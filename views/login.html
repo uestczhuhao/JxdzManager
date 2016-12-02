@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>登录</title>
+    <link rel="stylesheet" href="static/css/pintuer.css">
+    <link rel="stylesheet" href="static/css/admin.css">
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/pintuer.js"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .regid {
+            width: 500px;
+            height: 350px;
+            margin: auto;
+            background: #f1f1f1;
+        }
+
+        #submit1 {
+            width: 120px;
+            position: relative;
+            top: 40px;
+            left: 10px;
+            padding: 5px 10px;
+        }
+
+        .inputForm {
+            width: 400px;
+            height: 30px;
+            padding: 10px 10px;
+            font-family: 黑体;
+            font-size: 18px;
+            position: relative;
+            top: 30px;
+            margin: 0, auto;
+        }
+
+        .regid p {
+            font-size: 20px;
+            font-family: 黑体;
+            width: 500px;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        //新加开始
+        function reg() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function close1() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function submit0() {
+            var a = document.getElementById("password1").value;
+            var b = document.getElementById("password2").value;
+            if (a == b) {
+                document.getElementById("form1").submit();
+            } else {
+                alert("您输入的密码不一致");
+                document.getElementById("password1").value = "";
+                document.getElementById("password2").value = "";
+            }
+        }
+        //新加结束 不用管
+    </script>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <div class="line bouncein">
+            <div class="xs6 xm4 xs3-move xm4-move">
+                <div style="height:150px;"></div>
+                <div class="media media-y margin-big-bottom">
+                </div>
+                <form action="" method="post">
+                    <div class="panel loginbox">
+                        <div class="text-center margin-big padding-big-top">
+                            <h1>后台管理中心</h1></div>
+                        <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
+                            <div class="form-group">
+                                <div class="field field-icon-right">
+                                    <input type="text" class="input input-big" name="name" placeholder="登录账号" data-validate="required:请填写账号" />
+                                    <span class="icon icon-user margin-small"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="field field-icon-right">
+                                    <input type="password" class="input input-big" name="password" placeholder="登录密码" data-validate="required:请填写密码" />
+                                    <span class="icon icon-key margin-small"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="field">
+                                    <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                                    <img src="static/images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>
+                </form>
+                <div style="padding:30px;"><input type="button" class="button button-block bg-main text-big input-big" onclick="reg()" value="注册"></div>
+                <!--新加-->
+
+                <div id="myModal" class="modal">
+                    <span class="close" id="close" onclick="close1()">x</span>
+                    <div class="regid">
+                        <p>欢迎注册</p>
+                        <form id="form1" action="" method="Post">
+                            <!--如果需要自己修改action，每一个表单都有id可通过id获取值，判断密码是否一样在前端已经验证过了-->
+                            <div class="inputForm">
+                                <label for="username1">账号 ：</label>
+                                <input type="text" placeholder="账号" class="username1" id="username1" name="username1"></br>
+                            </div>
+                            <div class="inputForm">
+                                <label for="password1">密码1：</label>
+                                <input type="password" placeholder="密码" class="password1" id="password1" name="password1"></br>
+                            </div>
+                            <div class="inputForm">
+                                <label for="password2">密码2：</label>
+                                <input type="password" placeholder="密码" class="password1" id="password2" name="password1"></br>
+                            </div>
+                            <div class="inputForm">
+                                <label for="super">超级管理员</label>
+                                <input type="radio" name="right" value="super">
+                                <label for="normal">普通管理员</label>
+                                <input type="radio" name="right" value="normal">
+                            </div>
+                        </form>
+                        <input type="button" id="submit1" value="提交" onclick="submit0()">
+                    </div>
+                </div>
+                <!--新加结束-->
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
