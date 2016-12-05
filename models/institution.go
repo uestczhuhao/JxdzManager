@@ -20,8 +20,6 @@ func AddInstitution(title string, duty string) error {
 
 	return err
 
-	//增加外键约束,把Employee和Institution两表连接起来
-	//http://www.cnblogs.com/pfxiong/archive/2013/08/22/3275020.html
 }
 
 func DelInstitution(title string) error {
