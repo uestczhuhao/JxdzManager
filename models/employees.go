@@ -1,9 +1,6 @@
 package models
 
-import (
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
-)
+import "github.com/astaxie/beego/orm"
 
 type Employee struct {
 	Id        int
@@ -11,8 +8,8 @@ type Employee struct {
 	Job       string
 	Telphone  string
 	Email     string
-	Script    string
-	Workplace string
+	Script    string `orm:"size(800)"`
+	Workplace string `orm:"size(500)"`
 }
 
 func AddEmployee(messages ...string) error {
@@ -38,18 +35,11 @@ func AddEmployee(messages ...string) error {
 //根据目标的姓名和职位删除,二者必须完全符合要求
 func DelEmployee(name string, job string) error {
 	o := orm.NewOrm()
+	q := o.QueryTable("Employee")
+	var emp Employee
 
-	emp := Employee{Name: name, Job: job}
-	var err error
-	beego.Debug(emp)
-	beego.Debug(o.Read(&emp, "Name") == nil)
-	beego.Debug(emp)
-	beego.Debug(o.Read(&emp, "Job") == nil)
-	if o.Read(&emp, "Name") == nil &&
-		o.Read(&emp, "Job") == nil {
-		_, err = o.Delete(&emp)
-		beego.Debug(err)
-	}
-
+	err := q.Filter("Name", name).Filter("Job", job).One(&emp)
+	// beego.Debug(emp)
+	_, err = o.Delete(&emp)
 	return err
 }

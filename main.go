@@ -13,7 +13,7 @@ func main() {
 	models.AddUserCom("hao", "123456")
 
 	var err error
-	err = models.AddEmployee("zhu", "某某职位", "22333322", "843728@123.com")
+	// err = models.AddEmployee("zhu", "某某职位", "22333322", "843728@123.com")
 	// err = models.AddEmployee("zhu", "某某职位", "22333322", "843728@123.com")
 	// err = models.AddEmployee("zhu", "某某职位", "22333322", "843728@123.com")
 	// err = models.AddEmployee("zhu", "某某职位", "22333322", "843728@123.com")
@@ -28,7 +28,7 @@ func main() {
 	// if err != nil {
 	// 	beego.Error(err)
 	// }
-	err = models.DelEmployee("zhu", "某某")
+	err = models.DelEmployee("zhu", "某某职位")
 	if err != nil {
 		beego.Error(err)
 	}

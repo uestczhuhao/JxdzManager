@@ -12,7 +12,7 @@
     <script src="static/js/jquery.js"></script>
     <script src="static/js/pintuer.js"></script>
     <style>
-        .modal {
+        .modal1 {
             display: none;
             position: fixed;
             z-index: 999;
@@ -24,9 +24,10 @@
             overflow: auto;
             background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.9);
+            background: url(static/images/bg.jpg);
         }
 
-        .close {
+        .close1 {
             position: absolute;
             top: 15px;
             right: 35px;
@@ -36,45 +37,48 @@
             transition: 0.3s;
         }
 
-        .close:hover,
-        .close:focus {
+        .close1:hover,
+        .close1:focus {
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
         }
 
         .regid {
-            width: 500px;
-            height: 350px;
+            width: 400px;
+            height: 400px;
             margin: auto;
-            background: #f1f1f1;
+            margin-top: 6%;
+            background: #F1F1F1;
+            background: url(static/static/images/tmbg-white.png);
         }
 
         #submit1 {
             width: 120px;
             position: relative;
             top: 40px;
-            left: 10px;
+            left: 100px;
             padding: 5px 10px;
         }
 
-        .inputForm {
+        .inputForm1 {
             width: 400px;
-            height: 30px;
+            height: 50px;
             padding: 10px 10px;
             font-family: 黑体;
             font-size: 18px;
+            text-align: center;
             position: relative;
             top: 30px;
-            margin: 0, auto;
+            margin: 0 auto;
         }
 
         .regid p {
             font-size: 20px;
             font-family: 黑体;
-            width: 500px;
+            width: 400px;
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             padding-bottom: 0;
             margin-bottom: 0;
         }
@@ -137,37 +141,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>
+                        <div style="padding:30px;">
+                            <input type="submit" class="button button-block bg-main text-big input-big" value="登录" style="display:inline-block;width:160px;">
+                            <input type="button" class="button button-block bg-main text-big input-big" onclick="reg()" value="注册" style="display:inline-block;width:160px;float:right;">
+                        </div>
                 </form>
-                <div style="padding:30px;"><input type="button" class="button button-block bg-main text-big input-big" onclick="reg()" value="注册"></div>
+
                 <!--新加-->
 
-                <div id="myModal" class="modal">
-                    <span class="close" id="close" onclick="close1()">x</span>
+                <div id="myModal" class="modal1">
+                    <span class="close1" id="close1" onclick="close1()">x</span>
                     <div class="regid">
                         <p>欢迎注册</p>
                         <form id="form1" action="" method="Post">
                             <!--如果需要自己修改action，每一个表单都有id可通过id获取值，判断密码是否一样在前端已经验证过了-->
-                            <div class="inputForm">
+                            <div class="inputForm1">
                                 <label for="username1">账号 ：</label>
                                 <input type="text" placeholder="账号" class="username1" id="username1" name="username1"></br>
                             </div>
-                            <div class="inputForm">
+                            <div class="inputForm1">
                                 <label for="password1">密码1：</label>
                                 <input type="password" placeholder="密码" class="password1" id="password1" name="password1"></br>
                             </div>
-                            <div class="inputForm">
+                            <div class="inputForm1">
                                 <label for="password2">密码2：</label>
                                 <input type="password" placeholder="密码" class="password1" id="password2" name="password1"></br>
                             </div>
-                            <div class="inputForm">
+                            <div class="inputForm1">
                                 <label for="super">超级管理员</label>
                                 <input type="radio" name="right" value="super">
                                 <label for="normal">普通管理员</label>
                                 <input type="radio" name="right" value="normal">
                             </div>
                         </form>
-                        <input type="button" id="submit1" value="提交" onclick="submit0()">
+                        <input type="button" id="submit1" class="button button-block bg-main text-big input-big" value="提交" onclick="submit0()" style="width:200px;">
                     </div>
                 </div>
                 <!--新加结束-->
