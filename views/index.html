@@ -18,8 +18,8 @@
     <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="static/assets/js/Lightweight-Chart/cssCharts.css">
 
-
 </head>
+
 <style>
     .label {
         color: black !important;
@@ -30,6 +30,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
+
 
                 <a class="navbar-brand" href="index.html"><strong>Marvel</strong></a>
 
@@ -46,10 +47,10 @@
                         <a href="#"><i class="fa fa-dashboard"></i>内容管理<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">学院概况<span class="fa arrow"></span></a>
+                                <a href="">学院概况<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#">学院简介</a>
+                                        <a href="index.html">学院简介</a>
                                     </li>
                                     <li>
                                         <a href="#">学院机构<span class="fa arrow"></span></a>
@@ -331,14 +332,14 @@
                 </ol>
 
                 <div class="panel admin-panel">
-                    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+                    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
                     <div class="body-content">
-                        <form method="post" class="form-x" action="">
+                        <form method="POST" class="form-x" action="">
                             <div class="form-group">
                                 <div class="label">
-                                    <label>标题：</label>
+                                    <label style="font-size:16px">标题：</label>
                                 </div>
-                                <div class="field">
+                                <div class="field" style="display:inline-block">
                                     <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
                                     <div class="tips"></div>
                                 </div>
@@ -348,9 +349,9 @@
                             <if condition="$iscid eq 1">
                                 <div class="form-group">
                                     <div class="label">
-                                        <label>分类标题：</label>
+                                        <label style="font-size:16px">分类标题：</label>
                                     </div>
-                                    <div class="field">
+                                    <div class="field" style="display:inline-block">
                                         <select name="cid" class="input w50">
                               <option value="">请选择分类</option>
                               <option value="">产品分类</option>
@@ -365,20 +366,23 @@
                             </if>
                             <div class="form-group">
                                 <div class="label">
-                                    <label>描述：</label>
+                                    <label style="font-size:16px">描述：</label>
                                 </div>
                                 <div class="field">
-                                    <textarea class="input" name="note" style=" height:90px;"></textarea>
+                                    <textarea class="input" name="note" style=" height:90px;width:600px"></textarea>
                                     <div class="tips"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="label">
-                                    <label>内容：</label>
+                                    <label style="font-size:16px">内容：</label>
                                 </div>
                                 <div class="field">
-                                    <textarea name="content" class="input" style="height:450px; border:1px solid #ddd;"></textarea>
-                                    <div class="tips"></div>
+                                    <!-- <textarea name="content" class="input" style="height:450px;width:600px; border:1px solid #ddd;"></textarea>
+                                    <div class="tips"></div> -->
+                                    <textarea id="editor_id" name="content" style="width:700px;height:300px;">
+                                        &lt;strong&gt;HTML内容&lt;/strong&gt;
+                                      </textarea>
                                 </div>
                             </div>
 
@@ -386,11 +390,13 @@
 
 
 
+
+
                             <div class="form-group">
                                 <div class="label">
-                                    <label>发布时间：</label>
+                                    <label style="font-size:16px">发布时间：</label>
                                 </div>
-                                <div class="field">
+                                <div class="field" style="display:inline-block">
                                     <!-- <script src="static/js/laydate/laydate.js"></script> -->
                                     <input type="text" class="laydate-icon input w50" name="datetime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;"
                                     />
@@ -399,9 +405,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="label">
-                                    <label>作者：</label>
+                                    <label style="font-size:16px">作者：</label>
                                 </div>
-                                <div class="field">
+                                <div class="field" style="display:inline-block">
                                     <input type="text" class="input w50" name="authour" value="" />
                                     <div class="tips"></div>
                                 </div>
@@ -412,7 +418,7 @@
                                     <label></label>
                                 </div>
                                 <div class="field">
-                                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                                    <button class="button bg-main icon-check-square-o" type="submit" style="font-size:20px"> 提交</button>
                                 </div>
                             </div>
                         </form>
@@ -448,7 +454,18 @@
 
     <!-- Custom Js -->
     <script src="static/assets/js/custom-scripts.js"></script>
-
+    <!-- kindeditor -->
+    <script charset="utf-8" src="static/kindeditor-4.1.10/kindeditor.js"></script>
+    <script charset="utf-8" src="static/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script>
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id', {
+                uploadJson: '/test',
+                fileManagerJson: '/test',
+                allowFileManager: true
+            });
+        });
+    </script>
 
 </body>
 

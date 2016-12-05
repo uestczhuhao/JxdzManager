@@ -12,5 +12,5 @@ func init() {
 	beego.Router("/index", &controllers.IndexController{})
 	beego.Router("/form", &controllers.FormController{})
 	beego.Router("/add", &controllers.AddController{})
-
+	beego.Router("/test", &controllers.ImageController{})
 }

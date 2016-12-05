@@ -28,3 +28,7 @@ func (c *IndexController) Get() {
 
 	c.TplName = "index.html"
 }
+
+func (c *IndexController) Post() {
+	c.TplName = "index.html"
+}
