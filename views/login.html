@@ -50,7 +50,7 @@
             margin: auto;
             margin-top: 6%;
             background: #F1F1F1;
-            background: url(static/static/images/tmbg-white.png);
+            background: url(static/images/tmbg-white.png);
         }
 
         #submit1 {
@@ -83,29 +83,7 @@
             margin-bottom: 0;
         }
     </style>
-    <script>
-        //新加开始
-        function reg() {
-            document.getElementById("myModal").style.display = "block";
-        }
 
-        function close1() {
-            document.getElementById("myModal").style.display = "none";
-        }
-
-        function submit0() {
-            var a = document.getElementById("password1").value;
-            var b = document.getElementById("password2").value;
-            if (a == b) {
-                document.getElementById("form1").submit();
-            } else {
-                alert("您输入的密码不一致");
-                document.getElementById("password1").value = "";
-                document.getElementById("password2").value = "";
-            }
-        }
-        //新加结束 不用管
-    </script>
 </head>
 
 <body>
@@ -181,7 +159,29 @@
                 </div>
             </div>
         </div>
+        <script>
+            //新加开始
+            function reg() {
+                document.getElementById("myModal").style.display = "block";
+            }
 
+            function close1() {
+                document.getElementById("myModal").style.display = "none";
+            }
+
+            function submit0() {
+                var a = document.getElementById("password1").value;
+                var b = document.getElementById("password2").value;
+                if (a == b) {
+                    document.getElementById("form1").submit();
+                } else {
+                    alert("您输入的密码不一致");
+                    document.getElementById("password1").value = "";
+                    document.getElementById("password2").value = "";
+                }
+            }
+            //新加结束 不用管
+        </script>
 </body>
 
 </html>

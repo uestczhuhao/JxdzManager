@@ -13,7 +13,10 @@ func (c *IndexController) Get() {
 	// if login == false {
 	// 	c.Redirect("/", 302)
 	// }
-
+	l := c.GetSession("Login")
+	if l != true {
+		c.Redirect("/", 302)
+	}
 	v := c.GetSession("authority")
 	// beego.Debug(v)
 	if v == 1 {
@@ -30,5 +33,11 @@ func (c *IndexController) Get() {
 }
 
 func (c *IndexController) Post() {
-	c.TplName = "index.html"
+
+	beego.Debug("this is IndexController Post()")
+	a := c.Input().Get("content")
+
+	c.Data["html"] = "<strong>aaaaaaa</strong> "
+	beego.Debug(a)
+	c.Redirect("/index", 302)
 }
