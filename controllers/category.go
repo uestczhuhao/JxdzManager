@@ -10,5 +10,5 @@ type FormController struct {
 
 func (c *FormController) Get() {
 
-	c.TplName = "form.html"
+	c.TplName = "category.html"
 }
