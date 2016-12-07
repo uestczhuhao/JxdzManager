@@ -29,9 +29,11 @@ func main() {
 	// if err != nil {
 	// 	beego.Error(err)
 	// }
-
-	// IsError := models.DelCategory(12, "寄语11")
+	models.InitAndClear()
+	// models.AddCategory("寄语1222", "0")
 	// beego.Debug(strings.Replace("a,,d,1,2", ",", "", -1))
+
+	// beego.Debug(strings.Trim(",12,3,", ","))
 	// emps, err := models.SelectEmployeeByDepartment("jixie")
 	// // beego.Debug(len(emps))
 	//

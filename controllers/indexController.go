@@ -28,7 +28,7 @@ func (c *IndexController) Get() {
 	} else {
 		c.Redirect("/", 302)
 	}
-
+	c.Data["Html"] = "<em><strong>1234</strong></em>"
 	c.TplName = "index.html"
 }
 
@@ -37,7 +37,6 @@ func (c *IndexController) Post() {
 	beego.Debug("this is IndexController Post()")
 	a := c.Input().Get("content")
 
-	c.Data["html"] = "<strong>aaaaaaa</strong> "
 	beego.Debug(a)
 	c.Redirect("/index", 302)
 }
