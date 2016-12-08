@@ -11,51 +11,50 @@ import (
 type Category struct {
 	Id       int
 	Name     string `orm:"size(45)"`
-	ParentID string `orm:"size(45)"`
+	ParentID int
 	ChildID  string `orm:"size(100)"`
 	Depth    int
-	Path     string
 }
 
 //作为测试用的初始化函数
 func InitAndClear() {
-	AddCategory("学校概况", "0")
-	AddCategory("学院简介", "1")
-	AddCategory("学院机构", "1")
-	AddCategory("行政机构", "3")
-	AddCategory("科研机构", "3")
-	AddCategory("院长寄语", "1")
+	AddCategory("学院概况", 0)
+	AddCategory("学院机构", 1)
+	AddCategory("行政机构", 2)
+	AddCategory("院长寄语", 1)
+	AddCategory("科研机构", 2)
+	AddCategory("学院简介", 1)
+
 	return
 }
 
-func AddCategory(name string, parentid string) error {
+func AddCategory(name string, parentid int) error {
 	var err error
-	var desid string
+	// var desid string
 	var resultid int
 	var curid int64
 	o := orm.NewOrm()
-	if parentid == "0" {
-		cur := &Category{Name: name, ParentID: "0", ChildID: "0", Depth: 1, Path: name}
+	if parentid == 0 {
+		cur := &Category{Name: name, ParentID: 0, ChildID: "0", Depth: 1}
 		_, err = o.Insert(cur)
 		return err
 	}
 
-	desid = parentid
-	resultid, _ = strconv.Atoi(desid)
+	resultid = parentid
 
 	parentcate := Category{Id: resultid}
 
 	if o.Read(&parentcate, "Id") == nil {
 		depth := parentcate.Depth + 1
 
-		path := parentcate.Path + "/" + name
-
-		cur := &Category{Name: name, ParentID: parentid, ChildID: "0", Depth: depth, Path: path}
+		cur := &Category{Name: name, ParentID: parentid, ChildID: "0", Depth: depth}
 
 		curid, err = o.Insert(cur)
 		if err != nil {
 			return err
 		}
+	} else {
+		beego.Debug("输入父节点错误！")
 	}
 
 	if o.Read(&parentcate, "Id") == nil {
@@ -75,15 +74,18 @@ func AddCategory(name string, parentid string) error {
 	return err
 }
 
-func DelCategory(id int, name string, parentid string) int {
+func DelCategory(id int, name string, parentid int) int {
 	o := orm.NewOrm()
 	q := o.QueryTable("Category")
 	var category Category
 	// var idstr string
 
 	err := q.Filter("Id", id).Filter("Name", name).Filter("ParentID", parentid).One(&category)
+
 	if err != nil {
+		beego.Debug(err)
 		return 1
+
 	} else {
 		//err==nil  即搜索到了目标栏目category
 		if category.ChildID == "0" {
@@ -91,21 +93,15 @@ func DelCategory(id int, name string, parentid string) int {
 			var resultidDel int
 			var newchildidOfDel string
 			var DelIdStr string
-			resultidDel, _ = strconv.Atoi(category.ParentID)
+			resultidDel = category.ParentID
 			parentcateOfDel := Category{Id: resultidDel}
 			if o.Read(&parentcateOfDel, "Id") == nil {
-				beego.Debug(strings.Contains(parentcateOfDel.ChildID, ",") == true)
 				if strings.Contains(parentcateOfDel.ChildID, ",") == true {
 					newchildidOfDel = parentcateOfDel.ChildID
-					beego.Debug(newchildidOfDel)
 					DelIdStr = strconv.Itoa(category.Id)
-					beego.Debug(DelIdStr)
 					newchildidOfDel = strings.Replace(newchildidOfDel, DelIdStr, "", -1)
-					beego.Debug(newchildidOfDel)
 					newchildidOfDel = strings.Replace(newchildidOfDel, ",,", ",", -1)
-					beego.Debug(newchildidOfDel)
 					newchildidOfDel = strings.Trim(newchildidOfDel, ",")
-					beego.Debug(newchildidOfDel)
 					parentcateOfDel.ChildID = newchildidOfDel
 					o.Update(&parentcateOfDel, "ChildID")
 				} else {
@@ -121,4 +117,61 @@ func DelCategory(id int, name string, parentid string) int {
 		}
 	}
 
+}
+
+func GetAllCategories() ([]*Category, error) {
+	o := orm.NewOrm()
+
+	cate := make([]*Category, 0)
+	_, err := o.QueryTable("category").All(&cate)
+	return cate, err
+}
+
+func GetSortedCategories() ([]*Category, error) {
+	CateNotSort, err := GetAllCategories()
+	if err != nil {
+		beego.Error(err)
+	}
+	CateSort := make([]*Category, 0)
+	CateSort = MakeSort(0, CateNotSort)
+
+	return CateSort, err
+}
+
+func StandardOut() []string {
+	// StanOut := make([]string, 0)
+	var StanOut []string
+	var i int
+	CateSort, err := GetSortedCategories()
+	if err != nil {
+		beego.Error(err)
+	}
+	for i = 0; i < len(CateSort); i++ {
+		switch CateSort[i].Depth {
+		case 1:
+			StanOut = append(StanOut, CateSort[i].Name)
+			// StanOut[i] = CateSort[i].Name
+		case 2:
+			StanOut = append(StanOut, "--"+CateSort[i].Name)
+			// StanOut[i] = "--" + CateSort[i].Name
+		case 3:
+			StanOut = append(StanOut, "----"+CateSort[i].Name)
+			// StanOut[i] = "----" + CateSort[i].Name
+		default:
+			StanOut[i] = "无法显示"
+		}
+	}
+	return StanOut
+}
+
+var CateSort []*Category //全局变量，用以存储已经找到的栏目分类
+func MakeSort(id int, CateNotSort []*Category) []*Category {
+	var i int
+	for i = 0; i < len(CateNotSort); i++ {
+		if id == CateNotSort[i].ParentID {
+			CateSort = append(CateSort, CateNotSort[i])
+			MakeSort(CateNotSort[i].Id, CateNotSort)
+		}
+	}
+	return CateSort
 }

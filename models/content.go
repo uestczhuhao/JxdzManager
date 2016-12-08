@@ -32,3 +32,16 @@ func DelContent(til string) error {
 	}
 	return err
 }
+
+func SearchContent(til string) (cont Content, err error) {
+	o := orm.NewOrm()
+	cont = Content{Title: til}
+	err = o.Read(&cont, "Title")
+	if err == nil {
+		return cont, err
+	} else {
+		cont = Content{Title: ""}
+
+	}
+	return cont, err
+}

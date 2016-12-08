@@ -113,14 +113,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="field">
-                                    <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
-                                    <img src="static/images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">
-
+                                    <input type="text" class="input input-big" id="inputRandom" name="code" placeholder="填写下面的验证码" data-validate="required:请填写下面的验证码" />
+                                    <label id="autoRandom" value="" style="font-size:16px"></label>
+                                    <INPUT TYPE="button" style="font-size:16px" VALUE="获取验证码" ONCLICK="autoRandom.innerHTML=createCode(5)">
                                 </div>
                             </div>
                         </div>
                         <div style="padding:30px;">
-                            <input type="submit" class="button button-block bg-main text-big input-big" value="登录" style="display:inline-block;width:160px;">
+                            <input type="button" class="button button-block bg-main text-big input-big" value="登录" id="inputload" onclick="test()" style="display:inline-block;width:160px;">
                             <input type="button" class="button button-block bg-main text-big input-big" onclick="reg()" value="注册" style="display:inline-block;width:160px;float:right;">
                         </div>
                 </form>
@@ -131,7 +131,7 @@
                     <span class="close1" id="close1" onclick="close1()">x</span>
                     <div class="regid">
                         <p>欢迎注册</p>
-                        <form id="form1" action="" method="Post">
+                        <form id="form1" action="/" method="Post">
                             <!--如果需要自己修改action，每一个表单都有id可通过id获取值，判断密码是否一样在前端已经验证过了-->
                             <div class="inputForm1">
                                 <label for="username1">账号 ：</label>
@@ -152,15 +152,26 @@
                                 <input type="radio" name="right" value="normal">
                             </div>
                         </form>
-                        <input type="button" id="submit1" class="button button-block bg-main text-big input-big" value="提交" onclick="submit0()" style="width:200px;">
+                        <input type="submit" id="submit1" class="button button-block bg-main text-big input-big" value="注册" onclick="submit0()" style="width:200px;">
                     </div>
                 </div>
                 <!--新加结束-->
                 </div>
             </div>
         </div>
+
+
         <script>
+            window.onload() = autoRandom.innerHTML = All();
             //新加开始
+            function All() {
+                reg();
+                close1();
+                submit0();
+                createCode(sel.value);
+                test();
+            }
+
             function reg() {
                 document.getElementById("myModal").style.display = "block";
             }
@@ -180,8 +191,40 @@
                     document.getElementById("password2").value = "";
                 }
             }
+
+            // <!-- 产生验证码部分 -->
+            function createCode(len) {
+                var seed = new Array(
+                    'abcdefghijklmnopqrstuvwxyz',
+                    'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                    '0123456789'
+                ); //创建需要的数据数组
+                var idx, i;
+                var result = ''; //返回的结果变量
+                for (i = 0; i < len; i++) //根据指定的长度
+                {
+                    idx = Math.floor(Math.random() * 3); //获得随机数据的整数部分-获取一个随机整数
+                    result += seed[idx].substr(Math.floor(Math.random() * (seed[idx].length)), 1); //根据随机数获取数据中一个值
+                }
+                return result; //返回随机结果
+            }
+
+            function test() {
+                var input=document.getElementById("inputload");
+                var inputRandom = document.getElementById("inputRandom").value;
+                var autoRandom = document.getElementById("autoRandom").innerHTML;
+                if (inputRandom == autoRandom) {
+                    input.type="submit"
+                } else {
+                    alert("验证码输入错误，请重试！");
+                }
+
+            }
             //新加结束 不用管
         </script>
+
+
+
 </body>
 
 </html>

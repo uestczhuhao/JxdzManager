@@ -1,7 +1,6 @@
 package main
 
 import (
-	"JxdzManager/models"
 	_ "JxdzManager/routers"
 
 	"github.com/astaxie/beego"
@@ -9,8 +8,8 @@ import (
 
 func main() {
 
-	models.AddUserSup("zhu", "123456")
-	models.AddUserCom("hao", "123456")
+	// models.AddUserSup("zhu", "123456")
+	// models.AddUserCom("hao", "123456")
 
 	// var err error
 	// err = models.AddEmployee("aaa", "某某职位qw", "22333322", "843728@123.com", "", "", "1")
@@ -29,9 +28,22 @@ func main() {
 	// if err != nil {
 	// 	beego.Error(err)
 	// }
-	models.InitAndClear()
-	// models.AddCategory("寄语1222", "0")
+	// models.InitAndClear()
+	// models.AddCategory("寄语1222", 111)
+
+	// i := models.DelCategory(8, "寄语1222", 0)
+	// beego.Debug(i)
 	// beego.Debug(strings.Replace("a,,d,1,2", ",", "", -1))
+
+	// cate, err := models.GetAllCategories()
+	// if err != nil {
+	// 	beego.Error(err)
+	// }
+	// for i := 0; i < len(cate); i++ {
+	// 	beego.Debug(cate[i])
+	// }
+	// str := models.StandardOut()
+	// fmt.Println(str)
 
 	// beego.Debug(strings.Trim(",12,3,", ","))
 	// emps, err := models.SelectEmployeeByDepartment("jixie")

@@ -46,4 +46,14 @@ func (c *MainController) Post() {
 		c.Redirect("/", 302)
 		///想办法把验证错误的信息传到前端
 	}
+
+	RegUsername := c.Input().Get("username1")
+	RegPaaword := c.Input().Get("password1")
+	Authority := c.Input().Get("right")
+	beego.Debug("Comming Register!")
+	if Authority == "super" {
+		models.AddUserSup(RegUsername, RegPaaword)
+	} else if Authority == "normal" {
+		models.AddUserCom(RegUsername, RegPaaword)
+	}
 }
