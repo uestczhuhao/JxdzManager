@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"JxdzManager/models"
+
 	"github.com/astaxie/beego"
 )
 
@@ -29,7 +31,13 @@ func (c *IndexController) Get() {
 		c.Redirect("/", 302)
 	}
 	c.Data["Html"] = "<em><strong>1234</strong></em>"
+
 	c.TplName = "index.html"
+	// beego.Debug(models.StandardOut())
+	// cates := models.StandardOut()
+	// beego.Debug(len(cates))
+	// beego.Debug(cates)
+	c.Data["CateName"], c.Data["Categories"] = models.StandardOut()
 }
 
 func (c *IndexController) Post() {

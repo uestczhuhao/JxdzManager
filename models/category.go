@@ -134,39 +134,32 @@ func GetSortedCategories() ([]*Category, error) {
 	}
 	CateSort := make([]*Category, 0)
 	CateSort = MakeSort(0, CateNotSort)
-
 	return CateSort, err
 }
 
-func StandardOut() []string {
-	// StanOut := make([]string, 0)
-	var StanOut []string
+func StandardOut() ([]string, []*Category) {
+	StanOut := make([]string, 0)
 	var i int
+	var CateOutPut []*Category
 	CateSort, err := GetSortedCategories()
+	CateNotSort, err := GetAllCategories()
 	if err != nil {
 		beego.Error(err)
 	}
-	for i = 0; i < len(CateSort); i++ {
-		switch CateSort[i].Depth {
-		case 1:
-			StanOut = append(StanOut, CateSort[i].Name)
-			// StanOut[i] = CateSort[i].Name
-		case 2:
-			StanOut = append(StanOut, "--"+CateSort[i].Name)
-			// StanOut[i] = "--" + CateSort[i].Name
-		case 3:
-			StanOut = append(StanOut, "----"+CateSort[i].Name)
-			// StanOut[i] = "----" + CateSort[i].Name
-		default:
-			StanOut[i] = "无法显示"
-		}
+	for i = 0; i < len(CateNotSort); i++ {
+		j := CateSort[i].Depth - 1
+		StanOut = append(StanOut, strings.Repeat("--", j)+CateSort[i].Name)
 	}
-	return StanOut
+	CateOutPut = CateSort[0:i]
+	return StanOut, CateOutPut
 }
 
 var CateSort []*Category //全局变量，用以存储已经找到的栏目分类
 func MakeSort(id int, CateNotSort []*Category) []*Category {
 	var i int
+	if id == 0 {
+		CateSort = make([]*Category, 0)
+	}
 	for i = 0; i < len(CateNotSort); i++ {
 		if id == CateNotSort[i].ParentID {
 			CateSort = append(CateSort, CateNotSort[i])

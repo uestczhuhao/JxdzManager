@@ -50,7 +50,7 @@ func (c *MainController) Post() {
 	RegUsername := c.Input().Get("username1")
 	RegPaaword := c.Input().Get("password1")
 	Authority := c.Input().Get("right")
-	beego.Debug("Comming Register!")
+	// beego.Debug("Comming Register!")
 	if Authority == "super" {
 		models.AddUserSup(RegUsername, RegPaaword)
 	} else if Authority == "normal" {
