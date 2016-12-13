@@ -44,12 +44,17 @@
                     <li>
                         <a href="index.html" class="active-menu"><i class="fa fa-dashboard"></i>内容管理<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                          {{range .CateName}}
-                            <li>
-                                <a href="index.html">{{.}}</a>
 
+                            <li>
+                                <a href="index.html" class="active-menu">文章列表</a>
                             </li>
-                            {{end}}
+                            <li>
+                                <a href="addTeacher.html">师资列表</a>
+                            </li>
+                            <li>
+                                <a href="addLink.html">链接列表</a>
+                            </li>
+
                         </ul>
                     </li>
                     {{if .IsSuper}}
@@ -61,7 +66,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-sitemap"></i> 用户管理</a>
+                        <a href="user.html"><i class="fa fa-sitemap"></i> 用户管理</a>
 
                     </li>
 
@@ -78,11 +83,7 @@
                 <h1 class="page-header">
                             欢迎您  {{.admin}}管理员
                         </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Dashboard</a></li>
-                    <li class="active">Data</li>
-                </ol>
+
 
                 <div class="panel admin-panel">
                     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
@@ -102,7 +103,7 @@
                             <if condition="$iscid eq 1">
                                 <div class="form-group">
                                     <div class="label">
-                                        <label style="font-size:16px">分类标题：</label>
+                                        <label style="font-size:16px">栏目分类：</label>
                                     </div>
                                     <div class="field" style="display:inline-block">
                                         <select name="cid" class="input w50">

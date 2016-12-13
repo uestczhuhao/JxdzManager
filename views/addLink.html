@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Marvel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap Styles-->
+    <link href="static/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="static/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="static/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="static/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="static/assets/js/Lightweight-Chart/cssCharts.css">
+</head>
+
+<style>
+    .label {
+        color: black !important;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+
+
+                <a class="navbar-brand" href="index.html"><strong>Marvel</strong></a>
+
+                <div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            </div>
+
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="index.html" class="active-menu"><i class="fa fa-dashboard"></i>内容管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                          <li>
+                              <a href="index.html" >文章列表</a>
+                          </li>
+                          <li>
+                              <a href="addTeacher.html" >师资列表</a>
+                          </li>
+                          <li>
+                              <a href="addLink.html" class="active-menu">链接列表</a>
+                          </li>
+
+                        </ul>
+                    </li>
+                    {{if .IsSuper}}
+                    <li>
+
+                        <a href="category.html"><i class="fa fa-desktop"></i>栏目管理</a>
+
+
+                    </li>
+
+                    <li>
+                        <a href="user.html"><i class="fa fa-sitemap"></i> 用户管理</a>
+
+                    </li>
+
+                    {{end}}
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                            欢迎您  {{.admin}}管理员
+                        </h1>
+
+
+                <div class="panel admin-panel">
+                    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
+                    <div class="body-content">
+                        <form method="POST" class="form-x" action="addLink.html">
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">标题：</label>
+                                </div>
+                                <div class="field" style="display:inline-block">
+                                    <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+
+
+                            <if condition="$iscid eq 1">
+                                <div class="form-group">
+                                    <div class="label">
+                                        <label style="font-size:16px">栏目分类：</label>
+                                    </div>
+                                    <div class="field" style="display:inline-block">
+                                        <select name="cid" class="input w50">
+                              <option value="">请选择分类</option>
+                              {{range .CateName}}
+                                <li>
+                                  <option value="">{{.}}</option>
+
+                                </li>
+                                {{end}}
+
+                              <option value="">产品分类</option>
+                            </select>
+                                        <div class="tips"></div>
+                                    </div>
+                                </div>
+
+                            </if>
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">描述：</label>
+                                </div>
+                                <div class="field">
+                                    <textarea class="input" name="note" style=" height:90px;width:600px"></textarea>
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">内容：</label>
+                                </div>
+                                <div class="field">
+                                    <!-- <textarea name="content" class="input" style="height:450px;width:600px; border:1px solid #ddd;"></textarea>
+                                    <div class="tips"></div> -->
+                                    <textarea id="addeditor_id" name="content" style="width:65%;height:200px;border: 0 none;"> {{.Html}}</textarea>
+                                    <textarea rows="" cols="" name="schtmlnr" id="schtmlnr" style="display:none;"></textarea>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">发布时间：</label>
+                                </div>
+                                <div class="field" style="display:inline-block">
+                                    <!-- <script src="static/js/laydate/laydate.js"></script> -->
+                                    <input type="text" class="laydate-icon input w50" name="datetime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;"
+                                    />
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">作者：</label>
+                                </div>
+                                <div class="field" style="display:inline-block">
+                                    <input type="text" class="input w50" name="authour" value="" />
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label></label>
+                                </div>
+                                <div class="field">
+                                    <!-- <input type="button" id="mysubmit" value="tj" onclick="" /> -->
+                                    <button class="button bg-main icon-check-square-o" name="mysubmit" id="mysubmit" type="submit" style="font-size:20px"> 提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->'#editor_id'
+    <!-- jQuery Js -->
+    <script src="static/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="static/assets/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="static/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="static/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="static/assets/js/morris/morris.js"></script>
+    <script src="static/assets/js/easypiechart.js"></script>
+    <script src="static/assets/js/easypiechart-data.js"></script>
+
+    <script src="static/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+    <!-- Custom Js -->
+    <script src="static/assets/js/custom-scripts.js"></script>
+    <!-- kindeditor -->
+    <script charset="utf-8" src="static/kindeditor-4.1.10/kindeditor.js"></script>
+    <script charset="utf-8" src="static/kindeditor-4.1.10/lang/zh_CN.js"></script>
+
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+            var editor = K.create('textarea[name="content"]');
+        });
+
+        // $("#mysubmit").click(function() {
+        //     //取得HTML内容?
+        //     //同步数据后可以直接取得textarea的value?
+        //     editor.sync();
+        //     var html = document.getElementById('addeditor_id').value; //原生API
+        //     $("#schtmlnr").val(html); //把KindEditor产生的html代码放到schtmlnr里面，用于提交
+        //     document.getElementById("mysubmit");
+        // });
+    </script>
+    <!-- <script>
+      function check(i){
+        if(document.getElementById(i).style=="none"){
+          document.getElementById(i).style="block";
+        }else{
+          document.getElementById(i).style="none";
+        }
+      }
+    </script> -->
+
+</body>
+
+</html>
+}
+</script>
+
+</body>
+
+</html>

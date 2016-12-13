@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Marvel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap Styles-->
+    <link href="static/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="static/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="static/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="static/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="static/assets/js/Lightweight-Chart/cssCharts.css">
+    <style>
+    .modal1 {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        background: url(static/images/bg.jpg);
+    }
+
+    .close1 {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close1:hover,
+    .close1:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .regid {
+        width: 400px;
+        height: 400px;
+        margin: auto;
+        margin-top: 6%;
+        background: #F1F1F1;
+        background: url(static/images/tmbg-white.png);
+    }
+
+    #submit1 {
+        width: 120px;
+        position: relative;
+        top: 40px;
+        left: 100px;
+        padding: 5px 10px;
+    }
+
+    .inputForm1 {
+        width: 400px;
+        height: 50px;
+        padding: 10px 10px;
+        font-family: 黑体;
+        font-size: 18px;
+        text-align: center;
+        position: relative;
+        top: 30px;
+        margin: 0 auto;
+    }
+
+    .regid p {
+        font-size: 20px;
+        font-family: 黑体;
+        width: 400px;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    #table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #table td,
+    #table th {
+        font-size: 1em;
+        height: 20px;
+        text-align: center;
+        border: 1px solid #005AB4;
+        padding: 3px 7px 2px 7px;
+    }
+
+    #table th {
+        font-size: 1.1em;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 4px;
+        background-color: #005AB4;
+        color: #ffffff;
+    }
+
+    </style>
+
+</head>
+
+<style>
+    .label {
+        color: black !important;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+
+
+                <a class="navbar-brand" href="index.html"><strong>Marvel</strong></a>
+
+                <div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            </div>
+
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                  <li>
+                      <a href="index.html"><i class="fa fa-dashboard"></i>内容管理<span class="fa arrow"></span></a>
+                      <ul class="nav nav-second-level">
+                        <li>
+                            <a href="index.html">文章列表</a>
+                        </li>
+                        <li>
+                            <a href="addTeacher.html">师资列表</a>
+                        </li>
+                        <li>
+                            <a href="addLink.html">链接列表</a>
+                        </li>
+                      </ul>
+                  </li>
+
+                    <li>
+                        <a href="category.html" ><i class="fa fa-desktop"></i>栏目管理</a>
+
+                    </li>
+
+
+                    <li>
+                        <a href="user.html" class="active-menu"><i class="fa fa-sitemap"></i> 用户管理</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                            欢迎您  超级管理员
+                        </h1>
+
+                        <!-- <input type="button" value="添加新栏目" style="color:black;padding:auto;width:120px;height:40px;" onclick="Add()"> -->
+                        <input type="button" class="button button-block bg-main text-big input-big" onclick="reg()" value="添加用户" style="display:inline-block;width:160px;float:left;">
+
+                        <table id="table" border="1">
+                            <thead>
+                                <tr>
+                                    <th>账号</th>
+                                    <th>密码</th>
+                                    <th>权限</th>
+
+                                    <th>
+                                      操作
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{range .AllUsers}}
+
+                                <tr>
+                                    <td>{{.Account}}</td>
+                                    <td>{{.Password}}</td>
+                                    <td>{{.Authority}}</td>
+                                    <td>
+                                    <a href="user.html?account={{.Account}}">删除</a>
+                                    </td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+
+
+
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+
+        <!-- 添加新栏目弹出的框 -->
+        <div id="myModal" class="modal1">
+            <span class="close1" id="close1" onclick="close1()">x</span>
+            <div class="regid">
+                <p>新用户</p>
+                <form id="form1" action="user.html" method="Post">
+                    <!--如果需要自己修改action，每一个表单都有id可通过id获取值，判断密码是否一样在前端已经验证过了-->
+
+                    <div class="inputForm1">
+                        <label for="catename">账号：</label>
+                        <input type="text" class="password1" id="password1" name="newaccount"></br>
+                    </div>
+                    <div class="inputForm1">
+                        <label for="parentcateid">密码：</label>
+                        <input type="text" class="password1" id="password2" name="newpassword"></br>
+                    </div>
+                    <div class="inputForm1">
+                        <label for="super">超级管理员</label>
+                        <input type="radio" name="right" value="super">
+                        <label for="normal">普通管理员</label>
+                        <input type="radio" name="right" value="normal">
+                    </div>
+                </form>
+                <input type="submit" id="submit1" class="button button-block bg-main text-big input-big" value="添加" onclick="submit0()" style="width:200px;">
+            </div>
+        </div>
+
+
+
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->'#editor_id'
+    <!-- jQuery Js -->
+    <script src="static/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="static/assets/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="static/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="static/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="static/assets/js/morris/morris.js"></script>
+    <script src="static/assets/js/easypiechart.js"></script>
+    <script src="static/assets/js/easypiechart-data.js"></script>
+
+    <script src="static/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+    <!-- Custom Js -->
+    <script src="static/assets/js/custom-scripts.js"></script>
+    <!-- kindeditor -->
+    <script charset="utf-8" src="static/kindeditor-4.1.10/kindeditor.js"></script>
+    <script charset="utf-8" src="static/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script>
+
+    function reg() {
+        document.getElementById("myModal").style.display = "block";
+    }
+    function close1() {
+        document.getElementById("myModal").style.display = "none";
+    }
+    function submit0() {
+      document.getElementById("form1").submit();
+    }
+    </script>
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+            var editor = K.create('textarea[name="content"]');
+        });
+
+        // $("#mysubmit").click(function() {
+        //     //取得HTML内容?
+        //     //同步数据后可以直接取得textarea的value?
+        //     editor.sync();
+        //     var html = document.getElementById('addeditor_id').value; //原生API
+        //     $("#schtmlnr").val(html); //把KindEditor产生的html代码放到schtmlnr里面，用于提交
+        //     document.getElementById("mysubmit");
+        // });
+    </script>
+
+
+</body>
+
+</html>
+}
+</script>
+
+</body>
+
+</html>

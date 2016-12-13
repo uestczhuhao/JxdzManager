@@ -72,3 +72,13 @@ func SearchUser(account string) (users Users, err error) {
 	return users, nil
 
 }
+
+func GetAllUsers() ([]*Users, error) {
+	o := orm.NewOrm()
+
+	users := make([]*Users, 0)
+
+	qs := o.QueryTable("users")
+	_, err := qs.All(&users)
+	return users, err
+}

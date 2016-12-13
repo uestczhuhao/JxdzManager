@@ -11,16 +11,12 @@ type IndexController struct {
 }
 
 func (c *IndexController) Get() {
-	// login := c.GetSession("Login")
-	// if login == false {
+
+	// l := c.GetSession("Login")
+	// if l != true {
 	// 	c.Redirect("/", 302)
 	// }
-	l := c.GetSession("Login")
-	if l != true {
-		c.Redirect("/", 302)
-	}
 	v := c.GetSession("authority")
-	// beego.Debug(v)
 	if v == 1 {
 		c.Data["IsSuper"] = true
 		c.Data["admin"] = "超级"

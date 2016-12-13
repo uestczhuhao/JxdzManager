@@ -16,15 +16,16 @@ func (c *FormController) Get() {
 	idstr := c.Input().Get("id")
 	name := c.Input().Get("name")
 	parentidstr := c.Input().Get("parentid")
-	id, err := strconv.Atoi(idstr)
-	if err != nil {
-		beego.Error(err)
-	}
-	parentid, err := strconv.Atoi(parentidstr)
-	if err != nil {
-		beego.Error(err)
-	}
+
 	if idstr != "" {
+		id, err := strconv.Atoi(idstr)
+		if err != nil {
+			beego.Error(err)
+		}
+		parentid, err := strconv.Atoi(parentidstr)
+		if err != nil {
+			beego.Error(err)
+		}
 		i := models.DelCategory(id, name, parentid)
 		if i == 1 {
 			beego.Debug("该栏目有子栏目，拒绝删除")
