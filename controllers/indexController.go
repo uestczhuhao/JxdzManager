@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"JxdzManager/models"
+	"strconv"
 
 	"github.com/astaxie/beego"
 )
@@ -26,21 +27,25 @@ func (c *IndexController) Get() {
 	} else {
 		c.Redirect("/", 302)
 	}
-	c.Data["Html"] = "<em><strong>1234</strong></em>"
+	// c.Data["Html"] = "<em><strong>1234</strong></em>"
 
 	c.TplName = "index.html"
-	// beego.Debug(models.StandardOut())
-	// cates := models.StandardOut()
-	// beego.Debug(len(cates))
-	// beego.Debug(cates)
-	c.Data["CateName"], c.Data["Categories"] = models.StandardOut()
+	c.Data["CateName"] = models.SortCategory()
 }
 
 func (c *IndexController) Post() {
+	cateIdstr := c.Input().Get("cid")
+	cateId, _ := strconv.Atoi(cateIdstr)
+	cateSearch, _ := models.SearchCategory(cateId)
 
-	beego.Debug("this is IndexController Post()")
-	a := c.Input().Get("content")
+	belongs := cateSearch.Name
+	beego.Debug(belongs)
 
-	beego.Debug(a)
+	title := c.Input().Get("title")
+	content := c.Input().Get("content")
+	err := models.AddContent(belongs, title, content)
+	if err != nil {
+		beego.Debug(err)
+	}
 	c.Redirect("/index", 302)
 }

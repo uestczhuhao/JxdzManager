@@ -16,6 +16,11 @@ type Category struct {
 	Depth    int
 }
 
+type CategorySorted struct {
+	Id   int
+	Name string `orm:"size(45)"`
+}
+
 //作为测试用的初始化函数
 func InitAndClear() {
 	AddCategory("学院概况", 0)
@@ -119,6 +124,16 @@ func DelCategory(id int, name string, parentid int) int {
 
 }
 
+func SearchCategory(id int) (cate Category, err error) {
+	o := orm.NewOrm()
+
+	cate = Category{Id: id}
+	if o.Read(&cate, "Id") == nil {
+		return cate, err
+	}
+	return cate, nil
+}
+
 func GetAllCategories() ([]*Category, error) {
 	o := orm.NewOrm()
 
@@ -152,6 +167,21 @@ func StandardOut() ([]string, []*Category) {
 	}
 	CateOutPut = CateSort[0:i]
 	return StanOut, CateOutPut
+}
+
+func SortCategory() []*CategorySorted {
+	CateName, CateSorted := StandardOut()
+	// var CateOut []*CategorySorted
+	CateOut := make([]*CategorySorted, 0)
+	var i int = 0
+	for i = 0; i < len(CateName); i++ {
+		var temp CategorySorted
+		temp.Id = CateSorted[i].Id
+		temp.Name = CateName[i]
+		CateOut = append(CateOut, &temp)
+
+	}
+	return CateOut
 }
 
 var CateSort []*Category //全局变量，用以存储已经找到的栏目分类

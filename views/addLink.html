@@ -46,13 +46,13 @@
                         <ul class="nav nav-second-level">
 
                           <li>
-                              <a href="index.html" >文章列表</a>
+                              <a href="index.html" >添加文章</a>
                           </li>
                           <li>
-                              <a href="addTeacher.html" >师资列表</a>
+                              <a href="addTeacher.html" >添加师资</a>
                           </li>
                           <li>
-                              <a href="addLink.html" class="active-menu">链接列表</a>
+                              <a href="addLink.html" class="active-menu">添加链接</a>
                           </li>
 
                         </ul>
@@ -85,10 +85,36 @@
                         </h1>
 
 
+                <a href="linkerlist.html"><i style="color:black; width:160px;"></i> 链接列表</a>
+
                 <div class="panel admin-panel">
                     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
                     <div class="body-content">
                         <form method="POST" class="form-x" action="addLink.html">
+
+                          <if condition="$iscid eq 1">
+                              <div class="form-group">
+                                  <div class="label">
+                                      <label style="font-size:16px">栏目分类：</label>
+                                  </div>
+                                  <div class="field" style="display:inline-block">
+                                      <select name="cid" class="input w50">
+                            <option value="">请选择分类</option>
+                            {{range .CateName}}
+                              <li>
+                                <option value="{{.Id}}">{{.Name}}</option>
+
+                              </li>
+                              {{end}}
+
+                          </select>
+                                      <div class="tips"></div>
+                                  </div>
+                              </div>
+
+                          </if>
+
+
                             <div class="form-group">
                                 <div class="label">
                                     <label style="font-size:16px">标题：</label>
@@ -100,77 +126,17 @@
                             </div>
 
 
-                            <if condition="$iscid eq 1">
-                                <div class="form-group">
-                                    <div class="label">
-                                        <label style="font-size:16px">栏目分类：</label>
-                                    </div>
-                                    <div class="field" style="display:inline-block">
-                                        <select name="cid" class="input w50">
-                              <option value="">请选择分类</option>
-                              {{range .CateName}}
-                                <li>
-                                  <option value="">{{.}}</option>
-
-                                </li>
-                                {{end}}
-
-                              <option value="">产品分类</option>
-                            </select>
-                                        <div class="tips"></div>
-                                    </div>
-                                </div>
-
-                            </if>
-                            <div class="form-group">
-                                <div class="label">
-                                    <label style="font-size:16px">描述：</label>
-                                </div>
-                                <div class="field">
-                                    <textarea class="input" name="note" style=" height:90px;width:600px"></textarea>
-                                    <div class="tips"></div>
-                                </div>
-                            </div>
-
-
 
                             <div class="form-group">
                                 <div class="label">
-                                    <label style="font-size:16px">内容：</label>
-                                </div>
-                                <div class="field">
-                                    <!-- <textarea name="content" class="input" style="height:450px;width:600px; border:1px solid #ddd;"></textarea>
-                                    <div class="tips"></div> -->
-                                    <textarea id="addeditor_id" name="content" style="width:65%;height:200px;border: 0 none;"> {{.Html}}</textarea>
-                                    <textarea rows="" cols="" name="schtmlnr" id="schtmlnr" style="display:none;"></textarea>
-                                </div>
-                            </div>
-
-
-
-
-
-
-                            <div class="form-group">
-                                <div class="label">
-                                    <label style="font-size:16px">发布时间：</label>
+                                    <label style="font-size:16px">链接地址：</label>
                                 </div>
                                 <div class="field" style="display:inline-block">
-                                    <!-- <script src="static/js/laydate/laydate.js"></script> -->
-                                    <input type="text" class="laydate-icon input w50" name="datetime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;"
-                                    />
+                                    <input type="text" class="input w50" value="" name="linker" data-validate="required:请输入标题" />
                                     <div class="tips"></div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="label">
-                                    <label style="font-size:16px">作者：</label>
-                                </div>
-                                <div class="field" style="display:inline-block">
-                                    <input type="text" class="input w50" name="authour" value="" />
-                                    <div class="tips"></div>
-                                </div>
-                            </div>
+
 
                             <div class="form-group">
                                 <div class="label">

@@ -46,13 +46,13 @@
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a href="index.html" class="active-menu">文章列表</a>
+                                <a href="index.html" class="active-menu">添加文章</a>
                             </li>
                             <li>
-                                <a href="addTeacher.html">师资列表</a>
+                                <a href="addTeacher.html">添加师资</a>
                             </li>
                             <li>
-                                <a href="addLink.html">链接列表</a>
+                                <a href="addLink.html">添加链接</a>
                             </li>
 
                         </ul>
@@ -84,6 +84,7 @@
                             欢迎您  {{.admin}}管理员
                         </h1>
 
+                        <a href="articlelist.html"><i style="color:black; width:160px;"></i> 文章列表</a>
 
                 <div class="panel admin-panel">
                     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
@@ -110,27 +111,18 @@
                               <option value="">请选择分类</option>
                               {{range .CateName}}
                                 <li>
-                                  <option value="">{{.}}</option>
+                                  <option value="{{.Id}}">{{.Name}}</option>
 
                                 </li>
                                 {{end}}
 
-                              <option value="">产品分类</option>
                             </select>
                                         <div class="tips"></div>
                                     </div>
                                 </div>
 
                             </if>
-                            <div class="form-group">
-                                <div class="label">
-                                    <label style="font-size:16px">描述：</label>
-                                </div>
-                                <div class="field">
-                                    <textarea class="input" name="note" style=" height:90px;width:600px"></textarea>
-                                    <div class="tips"></div>
-                                </div>
-                            </div>
+
 
 
 
@@ -141,34 +133,8 @@
                                 <div class="field">
                                     <!-- <textarea name="content" class="input" style="height:450px;width:600px; border:1px solid #ddd;"></textarea>
                                     <div class="tips"></div> -->
-                                    <textarea id="addeditor_id" name="content" style="width:65%;height:200px;border: 0 none;"> {{.Html}}</textarea>
+                                    <textarea id="addeditor_id" name="content" style="width:65%;height:400px;border: 0 none;"> </textarea>
                                     <textarea rows="" cols="" name="schtmlnr" id="schtmlnr" style="display:none;"></textarea>
-                                </div>
-                            </div>
-
-
-
-
-
-
-                            <div class="form-group">
-                                <div class="label">
-                                    <label style="font-size:16px">发布时间：</label>
-                                </div>
-                                <div class="field" style="display:inline-block">
-                                    <!-- <script src="static/js/laydate/laydate.js"></script> -->
-                                    <input type="text" class="laydate-icon input w50" name="datetime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;"
-                                    />
-                                    <div class="tips"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="label">
-                                    <label style="font-size:16px">作者：</label>
-                                </div>
-                                <div class="field" style="display:inline-block">
-                                    <input type="text" class="input w50" name="authour" value="" />
-                                    <div class="tips"></div>
                                 </div>
                             </div>
 

@@ -1,21 +1,23 @@
 package models
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type Content struct {
 	Id      int
+	Belongs string
 	Title   string `orm:"size(30)"`
-	Content string `orm:"size(500)"`
+	Content string `orm:"size(5000)"`
 }
 
-func AddContent(title string, cont string) error {
+func AddContent(belong string, title string, cont string) error {
 
 	o := orm.NewOrm()
 
-	content := &Content{Title: title, Content: cont}
+	content := &Content{Belongs: belong, Title: title, Content: cont}
 
 	_, err := o.Insert(content)
 	return err
@@ -44,4 +46,15 @@ func SearchContent(til string) (cont Content, err error) {
 
 	}
 	return cont, err
+}
+
+func GetAllContent() []*Content {
+	o := orm.NewOrm()
+	cont := make([]*Content, 0)
+
+	_, err := o.QueryTable("Content").All(&cont)
+	if err != nil {
+		beego.Error(err)
+	}
+	return cont
 }
