@@ -34,11 +34,12 @@ func (c *FormController) Get() {
 		}
 	}
 	c.Data["CateName"], c.Data["Categories"] = models.StandardOut()
+	c.Data["CateName"] = models.SortCategory()
 }
 
 func (c *FormController) Post() {
 	labelname := c.Input().Get("catename")
-	parentidstr := c.Input().Get("parentcateid")
+	parentidstr := c.Input().Get("cid")
 	parentid, err := strconv.Atoi(parentidstr)
 	beego.Debug(labelname)
 	beego.Debug(parentid)
