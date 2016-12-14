@@ -116,19 +116,21 @@
                     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
                     <div class="body-content">
                     <form method="GET" action="/teacherlist">
-                      <input type="submit" name="Job" id="Job"  value="职称" style="display:inline-block;width:160px;float:left;">
-                      <input type="submit" name="Doc" id="Doc"  value="博导" style="display:inline-block;width:160px;float:left;">
-                      <input type="submit" name="Dep" id="Dep"  value="系所" style="display:inline-block;width:160px;float:left;">
-
+                      <div>
+                        <input type="submit" name="Lis" id="lis"  value="列表" style="width:160px;float:left;">
+                      <input type="submit" name="Job" id="Job"  value="职称" style="width:160px;float:left;">
+                      <input type="submit" name="Doc" id="Doc"  value="博导" style="width:160px;float:left;">
+                      <input type="submit" name="Dep" id="Dep"  value="系所" style="width:160px;float:left;">
+                    </div>
                       {{if .Show1}}
-
+                      <p />
                       <p>教授(研究员)</p>
-                  
+
                       {{range .TeachersPro}}
                       <a href="">{{.Name}}</a>
                       {{end}}
 
-                      <p >副教授(高级工程师、副研究员)
+                      <p >副教授(高级工程师、副研究员)</p>
 
                         {{range .TeachersDepuPro}}
                         <a href="">{{.Name}}</a>
@@ -144,13 +146,71 @@
 
 
                       {{else if .Show2}}
+                      <p />
                       <p >博士生导师</p>
                       {{range .Teachers}}
                       <a href="">{{.Name}}</a>
                       {{end}}
 
                       {{else if .Show3}}
+                      <p />
+                      <p >机械工程系</p>
+                      {{range .Teachers1}}
+                      <a href="">{{.Name}}</a>
+                      {{end}}
+                      <p class="group-name">工业工程系</p>
+                      {{range .Teachers2}}
+                      <a href="">{{.Name}}</a>
+                      {{end}}
+                      <p class="group-name">电力电子系</p>
+                      {{range .Teachers3}}
+                      <a href="">{{.Name}}</a>
+                      {{end}}
+                      <p class="group-name">工程训练中心(学院教学示范中心)</p>
+                      {{range .Teachers4}}
+                      <a href="">{{.Name}}</a>
+                      {{end}}
 
+                      {{else}}
+                      <table id="table" border="1">
+                          <thead>
+                              <tr>
+                                  <th>所属栏目</th>
+                                  <th>姓名</th>
+                                  <th>学历</th>
+                                  <th>职位</th>
+                                  <th>电话</th>
+                                  <th>Email</th>
+                                  <th>
+                                    个人经历
+                                  </th>
+
+                                  <th>是否博导</th>
+                                  <th>系所</th>
+                                  <th>操作</th>
+
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {{range .AllTeachers}}
+
+                              <tr>
+                                <td>{{.Belongs}}</td>
+                                  <td>{{.Name}}</td>
+                                  <td>{{.EducationBackground}}</td>
+                                  <td>{{.Job}}</td>
+                                  <td>{{.Telphone}}</td>
+                                  <td>{{.Email}}</td>
+                                  <td>{{.Script}}</td>
+                                  <td>{{.IsDocTeacher}}</td>
+                                  <td>{{.Department}}</td>
+                                  <td>
+                                  <a href="teacherlist.html?teachername={{.Name}}&teacherjob={{.Job}}" >删除</a>
+                                  </td>
+                              </tr>
+                              {{end}}
+                          </tbody>
+                      </table>
 
                       {{end}}
 

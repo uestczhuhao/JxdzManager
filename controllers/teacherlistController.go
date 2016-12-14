@@ -25,7 +25,6 @@ func (c *TeacherListController) Get() {
 	job := c.Input().Get("Job")
 	doc := c.Input().Get("Doc")
 	dep := c.Input().Get("Dep")
-	beego.Debug(job)
 	if job != "" {
 		c.Data["Show1"] = true
 		c.Data["TeachersPro"], _ = models.SelectEmployeeByJob("教授")
@@ -47,7 +46,14 @@ func (c *TeacherListController) Get() {
 		c.Data["Show2"] = false
 		c.Data["Show3"] = false
 	}
-
+	teachername := c.Input().Get("teachername")
+	teacherjob := c.Input().Get("teacherjob")
+	beego.Debug(teachername, teacherjob)
+	err := models.DelEmployee(teachername, teacherjob)
+	if err != nil {
+		beego.Debug(err)
+	}
+	c.Data["AllTeachers"] = models.GetAllEmployees()
 	c.TplName = "teacherlist.html"
 }
 
