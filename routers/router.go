@@ -18,5 +18,6 @@ func init() {
 	beego.Router("/teacherlist", &controllers.TeacherListController{})
 	beego.Router("/linkerlist", &controllers.LinkerListController{})
 	beego.Router("/articlelist", &controllers.AticleListController{})
+	beego.Router("/onearticle", &controllers.OneAticleController{})
 
 }

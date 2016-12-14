@@ -6,11 +6,11 @@ import (
 	"github.com/astaxie/beego"
 )
 
-type AticleListController struct {
+type OneAticleController struct {
 	beego.Controller
 }
 
-func (c *AticleListController) Get() {
+func (c *OneAticleController) Get() {
 	v := c.GetSession("authority")
 	if v == 1 {
 		c.Data["IsSuper"] = true
@@ -21,7 +21,8 @@ func (c *AticleListController) Get() {
 	} else {
 		c.Redirect("/", 302)
 	}
-
-	c.Data["articles"] = models.GetAllContent()
-	c.TplName = "articlelist.html"
+	articletitle := c.Input().Get("articletitle")
+	c.Data["Ariticle"], _ = models.SearchContent(articletitle)
+	beego.Debug(c.Input().Get("articletitle"))
+	c.TplName = "onearticle.html"
 }

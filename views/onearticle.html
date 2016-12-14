@@ -22,30 +22,6 @@
     .label {
         color: black !important;
     }
-
-    #table {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    #table td,
-    #table th {
-        font-size: 1em;
-        height: 20px;
-        text-align: center;
-        border: 1px solid #005AB4;
-        padding: 3px 7px 2px 7px;
-    }
-
-    #table th {
-        font-size: 1.1em;
-        text-align: center;
-        padding-top: 5px;
-        padding-bottom: 4px;
-        background-color: #005AB4;
-        color: #ffffff;
-    }
 </style>
 
 <body>
@@ -69,15 +45,15 @@
                         <a href="index.html" class="active-menu"><i class="fa fa-dashboard"></i>内容管理<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 
-                          <li>
-                              <a href="index.html" >添加文章</a>
-                          </li>
-                          <li>
-                              <a href="addTeacher.html">添加师资</a>
-                          </li>
-                          <li>
-                              <a href="addLink.html">添加链接</a>
-                          </li>
+                            <li>
+                                <a href="index.html" class="active-menu">添加文章</a>
+                            </li>
+                            <li>
+                                <a href="addTeacher.html">添加师资</a>
+                            </li>
+                            <li>
+                                <a href="addLink.html">添加链接</a>
+                            </li>
 
                         </ul>
                     </li>
@@ -107,19 +83,26 @@
                 <h1 class="page-header">
                             欢迎您  {{.admin}}管理员
                         </h1>
-              <div>
-                <a href="addLink.html"><i style="color:black; width:160px;"></i> 返回</a>
 
+                        <a href="articlelist.html"><i style="color:black; width:160px;"></i> 返回</a>
 
-            </div>
                 <div class="panel admin-panel">
                     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
                     <div class="body-content">
-                      {{range .linkers}}
-                      <li>
-                      <a href="{{.Url}}">{{.Title}}</a>
-                    </li>
-                      {{end}}
+                        <form method="Get" class="form-x" action="/index">
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">{{.Ariticle.Title}}</label>
+                                </div>
+                                <div class="field">
+                                    <textarea id="addeditor_id" name="content" style="width:65%;height:400px;border: 0 none;">{{.Ariticle.Content}} </textarea>
+                                    <textarea rows="" cols="" name="schtmlnr" id="schtmlnr" style="display:none;"></textarea>
+                                </div>
+                            </div>
+
+
+                        </form>
                     </div>
                 </div>
 
@@ -159,8 +142,23 @@
             var editor = K.create('textarea[name="content"]');
         });
 
-
+        // $("#mysubmit").click(function() {
+        //     //取得HTML内容?
+        //     //同步数据后可以直接取得textarea的value?
+        //     editor.sync();
+        //     var html = document.getElementById('addeditor_id').value; //原生API
+        //     $("#schtmlnr").val(html); //把KindEditor产生的html代码放到schtmlnr里面，用于提交
+        //     document.getElementById("mysubmit");
+        // });
     </script>
+    <!-- <script>
+      function check(i){
+        if(document.getElementById(i).style=="none"){
+          document.getElementById(i).style="block";
+        }else{
+          document.getElementById(i).style="none";
+        }
+      }
     </script> -->
 
 </body>
