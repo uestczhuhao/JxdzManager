@@ -11,7 +11,7 @@
 <body>
 	<div class="head">
 		<div class="headContainer">
-			<a href="file:///J:/jxdz_html/jxdz.html">
+			<a href="jxdz.html">
 				<img src="static/img/jxdz_logo.png" style="float:left;margin-top:21px;cursor:pointer">
 			</a>
 			<a href="http://202.115.22.76/" target="_blank" style="font-size:12px;color:#fff;float:right;">旧版入口</a>
@@ -194,51 +194,18 @@
 	<div class="rotation">
 		<div class="shadow">
 			<ul class="rotationList">
-				<li id="ro1">
-					<a href="file:///" class="rotationTab" target="_blank">
-						<img src="static/img/ro1.jpg" class="ro">
+        {{range .HotNews}}
+				<li id="ro{{.Id}}">
+					<a href="/jxdzN5?Id={{.Id}}&BeId=23" class="rotationTab" target="_blank">
+						<img src="static/img/ro{{.Id}}.jpg" class="ro">
 					</a>
 					<div class="label">
-						<a class="bannerTitle" target="_blank" href="file:///">学院探索实施“新四会”学生励志教育工作</a>
-						<a class="bannerContainer" target="_blank" href="file:///">11月9日，机电学院面向入党积极分子举行“学习身边榜样，坚定人生航向”系列活动，号召同学们通过学习学校近期出版的《成电青年教师...</a>
+						<a class="bannerTitle" target="_blank" href="/jxdzN5?Id={{.Id}}&BeId=23">{{.Title}}</a>
+						<!-- <a class="bannerContainer" target="_blank" href="/jxdzN5?Id={{.Id}}">{{.Content}}</a> -->
 					</div>
 				</li>
-				<li id="ro2">
-					<a href="file:///" target="_blank" class="rotationTab">
-						<img src="static/img/ro2.jpg" class="ro">
-					</a>
-					<div class="label">
-						<a class="bannerTitle" target="_blank" href="file:///">学院探索实施“新四会”学生励志教育工作</a>
-						<a class="bannerContainer" target="_blank" href="file:///">11月9日，机电学院面向入党积极分子举行“学习身边榜样，坚定人生航向”系列活动，号召同学们通过学习学校近期出版的《成电青年教师...</a>
-					</div>
-				</li>
-				<li id="ro3">
-					<a href="file:///" target="_blank" class="rotationTab">
-						<img src="static/img/ro3.jpg" class="ro">
-					</a>
-					<div class="label">
-						<a class="bannerTitle" target="_blank" href="file:///">学校专题报道我院“两学一做”先进个人肖晨光</a>
-						<a class="bannerContainer" target="_blank" href="file:///">在学校开展的“两学一做”学习教育中，一批优秀的学生党员在认真学习党章、践行党规的同时，也积极参与社会服务建设，关心身边同学，充...</a>
-					</div>
-				</li>
-				<li id="ro4">
-					<a href="file:///" target="_blank" class="rotationTab">
-						<img src="static/img/ro4.jpg" class="ro">
-					</a>
-					<div class="label">
-						<a class="bannerTitle" target="_blank" href="file:///">我院学生获第二届中国“互联网+”大学生创新创业大赛...</a>
-						<a class="bannerContainer" target="_blank" href="file:///">据悉，本届大赛参赛高校2110所，占全国普通高校总数的81%，学生报名项目118804个、直接参与学生545808。在校赛、省级复赛的基础上，全...</a>
-					</div>
-				</li>
-				<li id="ro5">
-					<a href="file:///" target="_blank" class="rotationTab">
-						<img src="static/img/ro5.jpg" class="ro">
-					</a>
-					<div class="label">
-						<a class="bannerTitle" target="_blank" href="file:///">祝贺我院两名老师获2016年“电子科技大学安研奖教金”</a>
-						<a class="bannerContainer" target="_blank" href="file:///">根据《2016年“电子科技大学安研奖教金”申报通知》，经个人申请、单位推荐、学校评审及安研基金管理委员会核准确定，我院刘宇老师获得20...</a>
-					</div>
-				</li>
+        {{end}}
+
 				<div class="hotNewsBtn">
 					<a href="file:///">热点新闻&gt;&gt;</a>
 				</div>
@@ -254,230 +221,115 @@
 	</div>
 	<div class="content">
 		<div class="contentContainer">
-			<div class="offices">
+      <div class="offices">
 				<div class="office o1">
 					<div class="officeName">
 						<span>学院办公室</span>
-						<a href="file:///">more</a>
+            <a href="/jxdzN2?Id=27">more</a>
+
 					</div>
+
+
 					<ul class="officeList">
+            {{range .News1}}
 						<li>
-							<a href="file:///">学院党委书记张晓东一行赴加纳高校洽谈合作</a>
-							<span><img src="static/img/new.png" alt="new"></span>
+							<a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
 						</li>
-						<li>
-							<a href="file:///">河北招生组参加河北知名中学举办的“校园大学...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">杨平院长一行应邀参加第十五届全国机械工程学...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">2016年机电学院河北招生工作组招生工作成果喜人</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院召开院务扩大会议——传达学校安全工...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
+              {{end}}
 					</ul>
+
+
 				</div>
 				<div class="office o2">
 					<div class="officeName">
 						<span>科学研究</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=28">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">可靠性团队在IEEETR和RESS等可靠性领域顶级期...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">初次申请进入学校外协供方库的办理流程</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">关于举办中国创新挑战赛（四川赛区）企业技术...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">关于简化科研经费报销相关程序的通知</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">美的集团何柏锋博士一行来院访问</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News2}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 				<div class="office o3">
 					<div class="officeName">
 						<span>人事人才</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=29">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">关于2017年教师出国项目交流会的通知</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">关于开展2016年中级及以下专业技术职务评聘工...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">2016年电子科技大学国际青年学者论坛-机电分...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">2016年第四届成电国际青年学者论坛——机电分...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">电子科技大学公告</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News3}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 				<div class="office o4">
 					<div class="officeName">
 						<span>国际合作</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=30">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">2017年春季美国加州大学洛杉矶分校（UCLA）、...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">2017年美国密苏里大学（哥伦比亚校区）联合培...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">电子科技大学机电学院刘志亮宋迪老师出访美国...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">2017年美国密西根大学迪尔本分校（UMD）联合...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">我院设备监控与健康管理研究所教师出席美国机...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News4}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 				<div class="office o5">
 					<div class="officeName">
 						<span>本科生教育</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=31">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">郭伟老师《现代工程设计制图》补课通知</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">转发：关于对全校本科生结余教材费进行退费的...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">转发：关于2016-2017-1学期体育重新学习的考试通知</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机械电子工程学院成功举办2016-2017学年青年...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">韩杨老师《自动控制原理》临时停课通知</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News5}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 				<div class="office o6">
 					<div class="officeName">
 						<span>研究生教育</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=32">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">电子科技大学SMC奖学金评选通知</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">2017届省级优秀毕业生公示</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院与外国语学院研究生会成功举办交流活动</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院研究生第四、五党支部组织专题片观影...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院研究生第二党支部组织专题片观影学习</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News6}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 				<div class="office o7">
 					<div class="officeName">
 						<span>学生事务</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=33">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">电子科技大学2016年SMC奖学金公示名单</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">我院2016年SMC奖学金评审会议圆满举行</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学子在第五届大学生宿舍文化节中再创佳绩</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院2015-2016年度优秀班集体创建结果公示</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机械电子工程学院“传承优秀，积淀未来”2015...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News7}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 				<div class="office o8">
 					<div class="officeName">
 						<span>继续教育</span>
-						<a href="file:///">more</a>
+						<a href="/jxdzN2?Id=34">more</a>
 					</div>
-					<ul class="officeList">
-						<li>
-							<a href="file:///">中航凯天网络教育机械设计制造及其自动化专升...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机械电子工程学院举行2014年继教迎新晚会</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">杨平院长一行应邀参加第十五届全国机械工程学...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院继教学生取得九里提校区篮球赛小组冠军</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-						<li>
-							<a href="file:///">机电学院举办第十届“成电纵横”科技文化月演...</a>
-							<span><img src="static/img/new.png" alt="new"></span>
-						</li>
-					</ul>
+          <ul class="officeList">
+            {{range .News8}}
+            <li>
+              <a href="/jxdzN5?Id={{.Id}}">{{.Title}}</a>
+            </li>
+              {{end}}
+          </ul>
 				</div>
 
 			</div>
@@ -638,23 +490,15 @@
 			</div>
 			<div class="schoolIntro hotList">
 				<p>快速链接</p>
+
 				<ul>
+          {{range .link}}
 					<li>
-						<a href="//" target="_blank">>机械电子工程学院微信官方网站</a>
+						<a href="{{.Url}}" target="_blank">>{{.Title}}</a>
 					</li>
-					<li>
-						<a href="//" target="_blank">>电子科技大学</a>
-					</li>
-					<li>
-						<a href="//" target="_blank">>电子科技大信息门户系统</a>
-					</li>
-					<li>
-						<a href="//" target="_blank">>在线图书馆</a>
-					</li>
-					<li>
-						<a href="//" target="_blank">>后台入口</a>
-					</li>
+          {{end}}
 				</ul>
+
 			</div>
 			<div class="schoolIntro hotList">
 				<p>关于我们</p>

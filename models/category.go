@@ -176,6 +176,20 @@ func CreateCateList() ([]*CategoryListOne, error) {
 
 }
 
+func FindDepthIsHigh() []*Category {
+	var Cate []*Category
+
+	cateall, _ := GetAllCategories()
+	for i := 0; i < len(cateall); i++ {
+		var temp *Category
+		temp = cateall[i]
+		if temp.Depth == 100 {
+			Cate = append(Cate, temp)
+		}
+	}
+	return Cate
+}
+
 func SearchCategory(id int) (cate Category, err error) {
 	o := orm.NewOrm()
 
@@ -202,6 +216,42 @@ func GetSortedCategories() ([]*Category, error) {
 	CateSort := make([]*Category, 0)
 	CateSort = MakeSort(0, CateNotSort)
 	return CateSort, err
+}
+
+func FindAllFather(id int) []*Category {
+	var CateFather []*Category
+
+	cate, _ := SearchCategory(id)
+
+	for cate.Id != 0 {
+		var temp Category
+		temp = cate
+
+		CateFather = append(CateFather, &temp)
+		cate, _ = SearchCategory(cate.ParentID)
+	}
+	var CateFatherOut []*Category
+	var len1 int = len(CateFather) - 1
+	for j := len1; j >= 0; j-- {
+		var temp *Category
+		temp = CateFather[j]
+		CateFatherOut = append(CateFatherOut, temp)
+	}
+	return CateFatherOut
+}
+
+func FindLeftMenu(id int) []*Category {
+	cate, _ := SearchCategory(id)
+	catefather, _ := SearchCategory(cate.ParentID)
+	LeftMenu, _ := FindAllChild(catefather.Id)
+	if cate.Depth == 100 {
+		LeftMenu = FindDepthIsHigh()
+		return LeftMenu
+	} else if cate.Depth == 200 {
+		LeftMenu = FindDepthIsHigh()
+		return LeftMenu
+	}
+	return LeftMenu
 }
 
 //寻找所有的儿子节点节点

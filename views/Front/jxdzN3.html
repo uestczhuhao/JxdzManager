@@ -41,7 +41,7 @@
 <body>
     <div class="head">
 		<div class="headContainer">
-			<a href="file:///J:/jxdz_html/jxdz.html">
+			<a href="jxdz.html">
 				<img src="static/img/jxdz_logo.png" style="float:left;margin-top:21px;cursor:pointer">
 			</a>
 			<a href="http://202.115.22.76/" target="_blank" style="font-size:12px;color:#fff;float:right;">旧版入口</a>
@@ -53,66 +53,21 @@
 	<div class="nav">
 		<div class="navContainer">
 			<ul class="navigation">
-				<li onmouseover="drop('d1','131')" onmouseout="drop('d1','0')">
-					<a href="file:///" target="_blank">学院概况</a>
-					<ul class="dropDown" id="d1">
-						<li style="border-top:none;">
-							<a href="file:///">学院简介</a>
-						</li>
-						<li>
-							<a href="file:///">学院领导</a>
-						</li>
-						<li>
-							<a href="file:///">学院机构</a>
-						</li>
-						<li>
-							<a href="file:///">院长寄语</a>
-						</li>
-					</ul>
-				</li>
-				<li onmouseover="drop('d2','131')" onmouseout="drop('d2','0')">
-					<a href="file:///" target="_blank">师资队伍</a>
-					<ul class="dropDown" id="d2">
-						<li style="border-top:none;">
-							<a href="file:///">师资介绍</a>
-						</li>
-						<li>
-							<a href="file:///">杰出人才</a>
-						</li>
-						<li>
-							<a href="file:///">人事政策</a>
-						</li>
-						<li>
-							<a href="file:///">办事指南</a>
-						</li>
-					</ul>
-				</li>
-				<li onmouseover="drop('d3','230')" onmouseout="drop('d3','0')">
-					<a href="file:///" target="_blank">科学研究</a>
-					<ul class="dropDown" id="d3">
-						<li style="border-top:none;">
-							<a href="file:///">学科建设</a>
-						</li>
-						<li>
-							<a href="file:///">科研机构</a>
-						</li>
-						<li>
-							<a href="file:///">科研政策</a>
-						</li>
-						<li>
-							<a href="file:///">科研成果</a>
-						</li>
-							<li>
-							<a href="file:///">资料下载</a>
-						</li>
-						<li>
-							<a href="file:///">办事指南</a>
-						</li>
-						<li>
-							<a href="file:///">合作与交流</a>
-						</li>
-					</ul>
-				</li>
+        {{range .CatesForMenu}}
+        <li onmouseover="drop('d{{.Id}}','{{.DepthNumber}}')" onmouseout="drop('d{{.Id}}','0')">
+
+          <a href="/Judge?ID={{.CateOne.Id}}" target="_blank">{{.CateOne.Name}}</a>
+
+          <ul class="dropDown" id="d{{.Id}}">
+            {{range .CateTwo}}
+            <li style="border-top:none;">
+              <a href="/Judge?ID={{.Id}}">{{.Name}}</a>
+            </li>
+            {{end}}
+          </ul>
+
+        </li>
+        {{end}}
 				<li onmouseover="drop('d4','164')" onmouseout="drop('d4','0')">
 					<a href="file:///" target="_blank">人才培养</a>
 					<ul class="dropDown" id="d4">
@@ -266,41 +221,13 @@
         <div class="mainContainer">
             <div class="mainLeft">
                 <ul class="root">
+                  {{range .LeftMenu}}
                     <li>
                         <label class="rem">
-                            <a href="//">学科建设</a>
+                            <a href="Judge?ID={{.Id}}">{{.Name}}</a>
                         </label>
                     </li>
-                    <li>
-                        <label class="rem">
-                            <a href="//">科研机构</a>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="rem">
-                            <a href="//">科研政策</a>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="rem">
-                            <a href="//">科研成果</a>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="rem">
-                            <a href="//">资料下载</a>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="rem">
-                            <a href="//">办事指南</a>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="rem">
-                            <a href="//">合作与交流</a>
-                        </label>
-                    </li>
+                    {{end}}
                 </ul>
                 <p class="hotnewsTitle">热点新闻</p>
                 <ul class="hotNews">
@@ -323,31 +250,22 @@
             </div>
             <div class="mainRight">
                 <div class="mainTitle">
-                <h1>办事指南</h1>
+                <h1>{{.CateName.Name}}</h1>
                 <div class="crumbs">
                     <a href="jxdz.html">&nbsp;首页</a>
-                    <a href="//">>&nbsp;科学研究</a>
-                    <a href="//">>&nbsp;资料研究</a>
+                    {{range .Path}}
+                    <a href="/Judge?ID={{.Id}}">>&nbsp;{{.Name}}</a>
+                    {{end}}
                 </div>
             </div>
                 <div class="mainContent">
                     <ul class="articleList">
+                      {{range .downlist}}
                         <li>
-                            <a href="static/download/会签表.doc" target="_blank">会签表</a>
+                            <a href="{{.LinkTo}}" target="_blank">{{.Title}}</a>
                             <span>2015-09-08</span>
                         </li>
-                        <li>
-                            <a href="static/download/横向科研项目总经费预算表.doc" target="_blank">横向科研项目总经费预算表</a>
-                            <span>2015-09-08</span>
-                        </li>
-                        <li>
-                            <a href="" target="_blank">横向科研项目总经费预算表</a>
-                            <span>2015-09-08</span>
-                        </li>
-                        <li>
-                            <a href="" target="_blank">到账横向科研项目经费预算表</a>
-                            <span>2015-09-08</span>
-                        </li>
+                        {{end}}
                     </ul>
                     <div class="pageFooter">
                     </div>
@@ -371,22 +289,12 @@
 			</div>
 			<div class="schoolIntro hotList">
 				<p>快速链接</p>
-				<ul>
+        <ul>
+          {{range .link}}
 					<li>
-						<a href="//" target="_blank">>机械电子工程学院微信官方网站</a>
+						<a href="{{.Url}}" target="_blank">>{{.Title}}</a>
 					</li>
-					<li>
-						<a href="//" target="_blank">>电子科技大学</a>
-					</li>
-					<li>
-						<a href="//" target="_blank">>电子科技大信息门户系统</a>
-					</li>
-					<li>
-						<a href="//" target="_blank">>在线图书馆</a>
-					</li>
-					<li>
-						<a href="//" target="_blank">>后台入口</a>
-					</li>
+          {{end}}
 				</ul>
 			</div>
 			<div class="schoolIntro hotList">

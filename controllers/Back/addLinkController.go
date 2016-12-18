@@ -36,7 +36,7 @@ func (c *AddLinkController) Post() {
 	beego.Debug(belongs)
 	title := c.Input().Get("title")
 	linker := c.Input().Get("linker")
-	err := models.AddLinker(belongs, title, linker)
+	err := models.AddLinker(title, linker)
 	if err != nil {
 		beego.Debug(err)
 	}

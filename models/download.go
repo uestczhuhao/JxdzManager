@@ -1,20 +1,19 @@
 package models
 
-import (
-	"github.com/astaxie/beego/orm"
-)
+import "github.com/astaxie/beego/orm"
 
 type Download struct {
 	Id        int
+	BelongsId int
 	Title     string `orm:"size(45)"`
 	LinkTo    string
 	CreatTime string `orm:"size(100)"`
 }
 
-func AddDownload(tiltle string, linkto string, creatime string) error {
+func AddDownload(belongs int, tiltle string, linkto string, creatime string) error {
 	o := orm.NewOrm()
 
-	DownLoad := &Download{Title: tiltle, LinkTo: linkto, CreatTime: creatime}
+	DownLoad := &Download{BelongsId: belongs, Title: tiltle, LinkTo: linkto, CreatTime: creatime}
 	_, err := o.Insert(DownLoad)
 	return err
 }
@@ -31,6 +30,17 @@ func DeleteDownload(title string) error {
 	}
 
 	return nil
+}
+
+func SearchDownByBelongid(belongid int) []*Download {
+	alldownlist, _ := GetAllDownload()
+	var downlist []*Download
+	for i := 0; i < len(alldownlist); i++ {
+		if belongid == alldownlist[i].BelongsId {
+			downlist = append(downlist, alldownlist[i])
+		}
+	}
+	return downlist
 }
 
 func SearchDownload(id int) (Download, error) {

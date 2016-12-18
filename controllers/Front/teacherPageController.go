@@ -17,6 +17,11 @@ func (c *JxdzN6Controller) Get() {
 		beego.Error(err)
 	}
 	c.Data["teacher"] = models.SearchTeacherById(teacherId)
+	c.Data["CatesForMenu"], err = models.CreateCateList()
+	c.Data["link"] = models.GetAllLinker()
+
+	c.Data["Path"] = models.FindAllFather(7)
+	c.Data["LeftMenu"] = models.FindLeftMenu(7)
 	// beego.Debug(teacher)
 	c.TplName = "Front/jxdzN6.html"
 }

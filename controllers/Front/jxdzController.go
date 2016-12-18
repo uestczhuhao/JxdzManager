@@ -17,9 +17,20 @@ func (c *JxdzController) Get() {
 	if err != nil {
 		beego.Error(err)
 	}
-	// c.Data["number"]=
-	// c.Data["CateDepthTwo1"], _ = models.FindAllSon(1)
-	// c.Data["CateDepthTwo2"], _ = models.FindAllSon(6)
-	// c.Data["CateDepthTwo3"], _ = models.FindAllSon(11)
+	c.Data["link"] = models.GetAllLinker()
+
+	c.Data["HotNews"] = models.SearchArticleByBelongid(23)
+	c.Data["News1"] = models.SearchArticleByBelongid(27)
+	c.Data["News2"] = models.SearchArticleByBelongid(28)
+	c.Data["News3"] = models.SearchArticleByBelongid(29)
+	c.Data["News4"] = models.SearchArticleByBelongid(30)
+	c.Data["News5"] = models.SearchArticleByBelongid(31)
+	c.Data["News6"] = models.SearchArticleByBelongid(32)
+	c.Data["News7"] = models.SearchArticleByBelongid(33)
+	c.Data["News8"] = models.SearchArticleByBelongid(34)
+
+	// for i := 0; i < len(links); i++ {
+	// 	beego.Debug(links[i].Title)
+	// }
 	c.TplName = "Front/jxdz.html"
 }

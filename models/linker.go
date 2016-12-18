@@ -6,15 +6,14 @@ import (
 )
 
 type Linker struct {
-	Id      int
-	Belongs string
-	Title   string
-	Url     string
+	Id    int
+	Title string
+	Url   string
 }
 
-func AddLinker(belong string, title string, url string) error {
+func AddLinker(title string, url string) error {
 	o := orm.NewOrm()
-	newlink := &Linker{Belongs: belong, Title: title, Url: url}
+	newlink := &Linker{Title: title, Url: url}
 
 	_, err := o.Insert(newlink)
 

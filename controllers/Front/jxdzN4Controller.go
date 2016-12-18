@@ -35,6 +35,14 @@ func (c *JxdzN4Controller) Get() {
 		c.Data["Show2"] = false
 		c.Data["Show3"] = false
 	}
+	c.Data["CatesForMenu"], _ = models.CreateCateList()
+	c.Data["link"] = models.GetAllLinker()
 
+	id, err := c.GetInt("Id")
+	if err != nil {
+		beego.Error(err)
+	}
+	c.Data["Path"] = models.FindAllFather(id)
+	c.Data["LeftMenu"] = models.FindLeftMenu(id)
 	c.TplName = "Front/jxdzN4.html"
 }
