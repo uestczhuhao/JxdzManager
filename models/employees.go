@@ -7,7 +7,6 @@ import (
 
 type Employee struct {
 	Id                  int
-	Belongs             string
 	Name                string
 	Job                 string
 	Telphone            string
@@ -16,6 +15,10 @@ type Employee struct {
 	EducationBackground string `orm:"size(5000)"`
 	IsDocTeacher        string `orm:"size(5)"`
 	Department          string
+	Img                 string
+	Research            string
+	Teaching            string
+	Prize               string
 }
 
 //其中workplace一栏被用作是学历
@@ -29,15 +32,18 @@ func AddEmployee(messages ...string) error {
 		i = i + 1
 	}
 	employee := &Employee{
-		Belongs:             mes[0],
-		Name:                mes[1],
-		Job:                 mes[2],
-		Telphone:            mes[3],
-		Email:               mes[4],
-		Script:              mes[5],
-		EducationBackground: mes[6],
-		IsDocTeacher:        mes[7],
-		Department:          mes[8]}
+		Name:                mes[0],
+		Job:                 mes[1],
+		Telphone:            mes[2],
+		Email:               mes[3],
+		Script:              mes[4],
+		EducationBackground: mes[5],
+		IsDocTeacher:        mes[6],
+		Department:          mes[7],
+		Img:                 mes[8],
+		Research:            mes[9],
+		Teaching:            mes[10],
+		Prize:               mes[11]}
 
 	_, err := o.Insert(employee)
 	return err
@@ -53,6 +59,17 @@ func DelEmployee(name string, job string) error {
 	// beego.Debug(emp)
 	_, err = o.Delete(&emp)
 	return err
+}
+
+func SearchTeacherById(id int) Employee {
+	o := orm.NewOrm()
+
+	teach := Employee{Id: id}
+	if o.Read(&teach, "Id") == nil {
+		return teach
+	}
+	teach = Employee{Id: 0}
+	return teach
 }
 
 func SelectEmployeeByJob(job string) ([]*Employee, error) {

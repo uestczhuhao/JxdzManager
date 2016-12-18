@@ -1,0 +1,120 @@
+ div{
+        margin:0;
+        padding:0;
+    }
+    .main{
+        margin:0;
+        padding:0;
+        margin-top:20px;
+    }
+    .mainContainer{
+        overflow:hidden;
+        width:1110px;
+        margin:0 auto;
+        background:#dd5e5e;
+    }
+    .mainLeft{
+        width:278px;
+        padding:0 23px;
+        padding-top:192px;
+        float:left;
+        background:url(../img/sideView.png) no-repeat;
+    }
+    .root{
+        margin:0px;
+        margin-bottom:40px;
+        padding:0;
+        overflow:hidden;
+    }
+    .root li{
+        line-height:40px;
+        border-bottom:1px dotted #d8d8d8;
+    }
+    .root .rem{
+        padding-left:16px;
+    }
+    .root li a{
+        text-decoration:none;
+        font-size:13px;
+        color:#fff;
+       
+        outline:none;
+    }
+    .rem a{
+         padding-left:5px;
+    }
+    .view{
+        margin:0;
+        padding:0;
+        display:inline-block;
+        height:18px;
+        vertical-align:middle;
+        width:16px;
+        cursor:pointer;
+    }
+    .level2{
+        margin-top:-5px;
+        padding-left:20px;
+        padding-bottom:5px;
+    } 
+    .level2 li{
+        border: 0;
+        line-height:30px;
+    }
+    .hotnewsTitle{
+        font-size:16px;
+        line-height:35px;
+        color:#fff;
+        background:#e57171;
+        text-indent:10px;
+    }
+    .hotNews li{
+        padding:0 10px;
+        line-height:44px;
+        border-bottom:1px dotted #d8d8d8;
+    }
+    .hotNews li a{
+        font-size:13px;
+        color:#fff;
+        text-decoration:none;
+        text-overflow: ellipsis;
+    }
+    /*right*/
+    .mainRight{
+        width:786px;
+        float:left;
+        background:#fff;
+        margin:0;
+        padding:0;
+    }
+    .mainTitle{
+        overflow:hidden;
+        margin-top:27px;
+        margin-left:30px;
+        margin-right:30px;
+        padding:3px 0;
+        border-bottom:2px solid #444;
+    }
+    .mainTitle h1{
+        margin:0;
+        padding:0;
+        float:left;
+        font-size:20px;
+        font-weight:normal;
+        color:#010101;
+    }
+    .crumbs{
+        float:right;
+        margin-top:7px;
+    }
+    .crumbs a{
+        font-size:13px;
+        color:#828787;
+        text-decoration:none;
+    }
+    .pageFooter{
+        width:786px;
+        height:210px;
+        overflow:hidden;
+        background:url(../img/pagefooter.png);
+    }

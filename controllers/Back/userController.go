@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -11,6 +11,18 @@ type UserController struct {
 }
 
 func (u *UserController) Get() {
+
+	v := u.GetSession("authority")
+	if v == 1 {
+		u.Data["IsSuper"] = true
+		u.Data["admin"] = "超级"
+	} else if v == 2 {
+		u.Data["IsSuper"] = false
+		u.Data["admin"] = "普通"
+	} else {
+		u.Redirect("/", 302)
+	}
+
 	u.TplName = "user.html"
 	var err error
 
@@ -26,7 +38,8 @@ func (u *UserController) Get() {
 	if err != nil {
 		beego.Error(err)
 	}
-	u.Data["CateName"], u.Data["Categories"] = models.StandardOut()
+	u.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
+	u.Data["CateName"] = models.SortCategory()
 }
 
 func (u *UserController) Post() {

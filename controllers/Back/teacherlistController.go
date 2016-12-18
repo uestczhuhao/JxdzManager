@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -48,11 +48,13 @@ func (c *TeacherListController) Get() {
 	}
 	teachername := c.Input().Get("teachername")
 	teacherjob := c.Input().Get("teacherjob")
-	beego.Debug(teachername, teacherjob)
 	err := models.DelEmployee(teachername, teacherjob)
 	if err != nil {
 		beego.Debug(err)
 	}
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
+	c.Data["CateName"] = models.SortCategory()
+
 	c.Data["AllTeachers"] = models.GetAllEmployees()
 	c.TplName = "teacherlist.html"
 }

@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -21,6 +21,14 @@ func (c *AticleListController) Get() {
 	} else {
 		c.Redirect("/", 302)
 	}
+	articleTitle := c.Input().Get("delarticletitle")
+
+	err := models.DelContent(articleTitle)
+	if err != nil {
+		beego.Debug(err)
+	}
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
+	c.Data["CateName"] = models.SortCategory()
 
 	c.Data["articles"] = models.GetAllContent()
 	c.TplName = "articlelist.html"

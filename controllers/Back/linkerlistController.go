@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -21,6 +21,8 @@ func (c *LinkerListController) Get() {
 	} else {
 		c.Redirect("/", 302)
 	}
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
+	c.Data["CateName"] = models.SortCategory()
 
 	c.Data["linkers"] = models.GetAllLinker()
 

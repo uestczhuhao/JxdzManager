@@ -14,7 +14,7 @@ type Users struct {
 
 func init() {
 	// 需要在init中注册定义的model
-	orm.RegisterModel(new(Users), new(Category), new(Content), new(Employee), new(Linker))
+	orm.RegisterModel(new(Users), new(Category), new(Content), new(Employee), new(Linker), new(Download))
 
 	// 设置基本的数据库
 	orm.RegisterDataBase("default", "mysql", "root:golang@/user?charset=utf8", 30)

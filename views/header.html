@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Marvel</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap Styles-->
+    <link href="static/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="static/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="static/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="static/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="static/assets/js/Lightweight-Chart/cssCharts.css">
+</head>
+
+<style>
+    .label {
+        color: black !important;
+    }
+    .modal1 {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 75%;
+        height: 75%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        background: url(static/images/bg.jpg);
+    }
+    .close1 {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .close1:hover,
+    .close1:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .regid {
+        width: 400px;
+        height: 400px;
+        margin: auto;
+        margin-top: 6%;
+        background: #F1F1F1;
+        background: url(static/images/tmbg-white.png);
+    }
+    #submit1 {
+        width: 120px;
+        position: relative;
+        top: 40px;
+        left: 100px;
+        padding: 5px 10px;
+    }
+    .inputForm1 {
+        width: 400px;
+        height: 50px;
+        padding: 10px 10px;
+        font-family: 黑体;
+        font-size: 18px;
+        text-align: center;
+        position: relative;
+        top: 30px;
+        margin: 0 auto;
+    }
+    .regid p {
+        font-size: 20px;
+        font-family: 黑体;
+        width: 400px;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    #table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .settdleft{
+      font-size: 1em;
+      height: 20px;
+      width: 400px;
+      text-align: left;;
+      border: 1px solid #005AB4;
+      padding: 3px 7px 2px 100px;
+    }
+    .default1 {
+        font-size: 1em;
+        height: 20px;
+        text-align: center;
+        border: 1px solid #005AB4;
+        padding: 3px 7px 2px 7px;
+    }
+    #table th {
+        font-size: 1.1em;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 4px;
+        background-color: #005AB4;
+        color: #ffffff;
+    }
+
+</style>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+
+
+                <a class="navbar-brand" href="index.html"><strong>Marvel</strong></a>
+
+                <div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            </div>
+
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="index.html" class="active-menu"><i class="fa fa-dashboard"></i>内容管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+
+                            <ul class="nav nav-second-level">
+                              {{range .CateName}}
+                              <li>
+                                  <a href="/Judge?ID={{.Id}}">{{.Name}}</a>
+                              </li>
+
+                              {{end}}
+                            </ul>
+                        </ul>
+                    </li>
+                    {{if .IsSuper}}
+                    <li>
+
+                        <a href="category.html"><i class="fa fa-desktop"></i>栏目管理</a>
+
+
+                    </li>
+
+                    <li>
+                        <a href="user.html"><i class="fa fa-sitemap"></i> 用户管理</a>
+
+                    </li>
+
+                    {{end}}
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                            欢迎您  {{.admin}}管理员
+                        </h1>

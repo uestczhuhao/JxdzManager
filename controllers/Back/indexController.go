@@ -1,8 +1,9 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
 	"strconv"
+	"time"
 
 	"github.com/astaxie/beego"
 )
@@ -30,20 +31,24 @@ func (c *IndexController) Get() {
 	// c.Data["Html"] = "<em><strong>1234</strong></em>"
 
 	c.TplName = "index.html"
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
+
+	onedepthidstr := c.Input().Get("OneDepthId")
+	onedepthid, _ := strconv.Atoi(onedepthidstr)
+	c.Data["CateNameDepthOther"], _ = models.FindAllChild(onedepthid)
+
 	c.Data["CateName"] = models.SortCategory()
 }
 
 func (c *IndexController) Post() {
 	cateIdstr := c.Input().Get("cid")
 	cateId, _ := strconv.Atoi(cateIdstr)
-	cateSearch, _ := models.SearchCategory(cateId)
-
-	belongs := cateSearch.Name
-	beego.Debug(belongs)
 
 	title := c.Input().Get("title")
+	from := c.Input().Get("from")
 	content := c.Input().Get("content")
-	err := models.AddContent(belongs, title, content)
+	timenow := time.Now().Format("2006-01-02")
+	err := models.AddContent(cateId, title, content, from, timenow)
 	if err != nil {
 		beego.Debug(err)
 	}

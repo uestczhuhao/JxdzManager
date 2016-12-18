@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -22,8 +22,6 @@ func (c *MainController) Post() {
 	// passcode:=c.Input().Get("code")
 
 	user, err := models.SearchUser(account)
-	// beego.Debug(user.Account)
-	// beego.Debug(user.Password)
 	if err != nil {
 		beego.Error(err)
 	}

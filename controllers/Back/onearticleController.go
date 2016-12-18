@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -22,6 +22,9 @@ func (c *OneAticleController) Get() {
 		c.Redirect("/", 302)
 	}
 	articletitle := c.Input().Get("articletitle")
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
+	c.Data["CateName"] = models.SortCategory()
+
 	c.Data["Ariticle"], _ = models.SearchContent(articletitle)
 	beego.Debug(c.Input().Get("articletitle"))
 	c.TplName = "onearticle.html"

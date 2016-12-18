@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>机械电子工程学院</title>
+<link href="static/css/headFooter.css" rel="stylesheet" type="text/css" />
+<link href="static/css/container.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="static/js/nav.js"></script>
+<script type="text/javascript" src="static/js/rotation.js"></script>
+</head>
+<body>
+	<div class="head">
+		<div class="headContainer">
+			<a href="file:///J:/jxdz_html/jxdz.html">
+				<img src="static/img/jxdz_logo.png" style="float:left;margin-top:21px;cursor:pointer">
+			</a>
+			<a href="http://202.115.22.76/" target="_blank" style="font-size:12px;color:#fff;float:right;">旧版入口</a>
+			<div class="slogan">
+				<img src="static/img/slogan.png" alt="slogan">
+			</div>
+		</div>
+	</div>
+	<div class="nav">
+		<div class="navContainer">
+			<ul class="navigation">
+        {{range .CatesForMenu}}
+				<li onmouseover="drop('d{{.Id}}','{{.DepthNumber}}')" onmouseout="drop('d{{.Id}}','0')">
+
+					<a href="/Judge?ID={{.CateOne.Id}}" target="_blank">{{.CateOne.Name}}</a>
+
+					<ul class="dropDown" id="d{{.Id}}">
+            {{range .CateTwo}}
+            <li style="border-top:none;">
+              <a href="/Judge?ID={{.Id}}">{{.Name}}</a>
+            </li>
+            {{end}}
+					</ul>
+
+				</li>
+        {{end}}
+
+        <li onmouseover="drop('d4','164')" onmouseout="drop('d4','0')">
+					<a href="file:///" target="_blank">人才培养</a>
+					<ul class="dropDown" id="d4">
+						<li style="border-top:none;">
+							<a href="file:///">本科生教育</a>
+						</li>
+						<li>
+							<a href="file:///">研究生教育</a>
+						</li>
+						<li>
+							<a href="file:///">专业学位教育</a>
+						</li>
+						<li>
+							<a href="file:///">继续教育</a>
+						</li>
+						<li>
+							<a href="file:///">实验教学示范中心</a>
+						</li>
+					</ul>
+				</li>
+
+
+
+				<li onmouseover="drop('d5','164')" onmouseout="drop('d5','0')">
+					<a href="file:///" target="_blank">国际交流</a>
+					<ul class="dropDown" id="d5">
+						<li style="border-top:none;">
+							<a href="file:///">教师出境</a>
+						</li>
+						<li>
+							<a href="file:///">学生出境</a>
+						</li>
+						<li>
+							<a href="file:///">来华留学</a>
+						</li>
+						<li>
+							<a href="file:///">来华专家</a>
+						</li>
+						<li>
+							<a href="file:///">国际会议</a>
+						</li>
+					</ul>
+				</li>
+				<li onmouseover="drop('d6','164')" onmouseout="drop('d6','0')">
+					<a href="file:///" target="_blank">学生工作</a>
+					<ul class="dropDown" id="d6">
+						<li style="border-top:none;">
+							<a href="file:///">通知公告</a>
+						</li>
+						<li>
+							<a href="file:///">学生活动</a>
+						</li>
+						<li>
+							<a href="file:///">学生风采</a>
+						</li>
+						<li>
+							<a href="file:///">办事指南</a>
+						</li>
+						<li>
+							<a href="file:///">资料下载</a>
+						</li>
+					</ul>
+				</li>
+				<li onmouseover="drop('d7','197')" onmouseout="drop('d7','0')">
+					<a href="file:///" target="_blank">招生就业</a>
+					<ul class="dropDown" id="d7">
+						<li style="border-top:none;">
+							<a href="file:///">本科招生</a>
+						</li>
+						<li>
+							<a href="file:///">研究生招生</a>
+						</li>
+						<li>
+							<a href="file:///">专业学位招生</a>
+						</li>
+						<li>
+							<a href="file:///">继续教育招生</a>
+						</li>
+						<li>
+							<a href="file:///">就业信息</a>
+						</li>
+						<li>
+							<a href="file:///">资料下载</a>
+						</li>
+					</ul>
+				</li>
+				<li onmouseover="drop('d8','164')" onmouseout="drop('d8','0')">
+					<a href="file:///" target="_blank">党群工作</a>
+					<ul class="dropDown" id="d8">
+						<li style="border-top:none;">
+							<a href="file:///">党群工作</a>
+						</li>
+						<li>
+							<a href="file:///">教代会</a>
+						</li>
+						<li>
+							<a href="file:///">统战工作</a>
+						</li>
+						<li>
+							<a href="file:///">工会工作</a>
+						</li>
+						<li>
+							<a href="file:///">资料下载</a>
+						</li>
+					</ul>
+				</li>
+				<li onmouseover="drop('d9',98)" onmouseout="drop('d9','0')">
+					<a href="file:///" target="_blank">院企合作</a>
+					<ul class="dropDown" id="d9">
+						<li style="border-top:none;">
+							<a href="file:///">合作模式</a>
+						</li>
+						<li>
+							<a href="file:///">企业信息</a>
+						</li>
+						<li>
+							<a href="file:///">资料下载</a>
+						</li>
+					</ul>
+				</li>
+				<li onmouseover="drop('d10',164)" onmouseout="drop('d10','0')">
+					<a href="file:///" target="_blank">院友之家</a>
+					<ul class="dropDown" id="d10">
+						<li style="border-top:none;">
+							<a href="file:///">院友活动</a>
+						</li>
+						<li>
+							<a href="file:///">院友风采</a>
+						</li>
+						<li>
+							<a href="file:///">历届毕业生合影</a>
+						</li>
+						<li>
+							<a href="file:///">院友服务</a>
+						</li>
+						<li>
+							<a href="file:///">院友留言</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="search">
+				<img src="static/img/search.png" onclick="changeView()">
+				<div class="searchText" id="searchText" style="display:none">
+					<form action="file:///J:/jxdz_html/jxdz.html" method="post">
+						<input type="text" name="search" placeholder="新闻搜索...">
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="rotation">
+		<div class="shadow">
+			<ul class="rotationList">
+				<li id="ro1">
+					<a href="file:///" class="rotationTab" target="_blank">
+						<img src="static/img/ro1.jpg" class="ro">
+					</a>
+					<div class="label">
+						<a class="bannerTitle" target="_blank" href="file:///">学院探索实施“新四会”学生励志教育工作</a>
+						<a class="bannerContainer" target="_blank" href="file:///">11月9日，机电学院面向入党积极分子举行“学习身边榜样，坚定人生航向”系列活动，号召同学们通过学习学校近期出版的《成电青年教师...</a>
+					</div>
+				</li>
+				<li id="ro2">
+					<a href="file:///" target="_blank" class="rotationTab">
+						<img src="static/img/ro2.jpg" class="ro">
+					</a>
+					<div class="label">
+						<a class="bannerTitle" target="_blank" href="file:///">学院探索实施“新四会”学生励志教育工作</a>
+						<a class="bannerContainer" target="_blank" href="file:///">11月9日，机电学院面向入党积极分子举行“学习身边榜样，坚定人生航向”系列活动，号召同学们通过学习学校近期出版的《成电青年教师...</a>
+					</div>
+				</li>
+				<li id="ro3">
+					<a href="file:///" target="_blank" class="rotationTab">
+						<img src="static/img/ro3.jpg" class="ro">
+					</a>
+					<div class="label">
+						<a class="bannerTitle" target="_blank" href="file:///">学校专题报道我院“两学一做”先进个人肖晨光</a>
+						<a class="bannerContainer" target="_blank" href="file:///">在学校开展的“两学一做”学习教育中，一批优秀的学生党员在认真学习党章、践行党规的同时，也积极参与社会服务建设，关心身边同学，充...</a>
+					</div>
+				</li>
+				<li id="ro4">
+					<a href="file:///" target="_blank" class="rotationTab">
+						<img src="static/img/ro4.jpg" class="ro">
+					</a>
+					<div class="label">
+						<a class="bannerTitle" target="_blank" href="file:///">我院学生获第二届中国“互联网+”大学生创新创业大赛...</a>
+						<a class="bannerContainer" target="_blank" href="file:///">据悉，本届大赛参赛高校2110所，占全国普通高校总数的81%，学生报名项目118804个、直接参与学生545808。在校赛、省级复赛的基础上，全...</a>
+					</div>
+				</li>
+				<li id="ro5">
+					<a href="file:///" target="_blank" class="rotationTab">
+						<img src="static/img/ro5.jpg" class="ro">
+					</a>
+					<div class="label">
+						<a class="bannerTitle" target="_blank" href="file:///">祝贺我院两名老师获2016年“电子科技大学安研奖教金”</a>
+						<a class="bannerContainer" target="_blank" href="file:///">根据《2016年“电子科技大学安研奖教金”申报通知》，经个人申请、单位推荐、学校评审及安研基金管理委员会核准确定，我院刘宇老师获得20...</a>
+					</div>
+				</li>
+				<div class="hotNewsBtn">
+					<a href="file:///">热点新闻&gt;&gt;</a>
+				</div>
+				<div class="indicators">
+					<span class="indicator" onclick="changeImg(0)" style="background: url(&quot;/static/img/btn-normal.png&quot;);"></span>
+					<span class="indicator" onclick="changeImg(1)" style="background: url(&quot;/static/img/btn-normal.png&quot;);"></span>
+					<span class="indicator" onclick="changeImg(2)" style="background: url(&quot;/static/img/btn-active.png&quot;);"></span>
+					<span class="indicator" onclick="changeImg(3)" style="background: url(&quot;/static/img/btn-normal.png&quot;);"></span>
+					<span class="indicator" onclick="changeImg(4)" style="background: url(&quot;/static/img/btn-normal.png&quot;);"></span>
+				</div>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="contentContainer">
+			<div class="offices">
+				<div class="office o1">
+					<div class="officeName">
+						<span>学院办公室</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">学院党委书记张晓东一行赴加纳高校洽谈合作</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">河北招生组参加河北知名中学举办的“校园大学...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">杨平院长一行应邀参加第十五届全国机械工程学...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">2016年机电学院河北招生工作组招生工作成果喜人</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院召开院务扩大会议——传达学校安全工...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o2">
+					<div class="officeName">
+						<span>科学研究</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">可靠性团队在IEEETR和RESS等可靠性领域顶级期...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">初次申请进入学校外协供方库的办理流程</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">关于举办中国创新挑战赛（四川赛区）企业技术...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">关于简化科研经费报销相关程序的通知</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">美的集团何柏锋博士一行来院访问</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o3">
+					<div class="officeName">
+						<span>人事人才</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">关于2017年教师出国项目交流会的通知</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">关于开展2016年中级及以下专业技术职务评聘工...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">2016年电子科技大学国际青年学者论坛-机电分...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">2016年第四届成电国际青年学者论坛——机电分...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">电子科技大学公告</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o4">
+					<div class="officeName">
+						<span>国际合作</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">2017年春季美国加州大学洛杉矶分校（UCLA）、...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">2017年美国密苏里大学（哥伦比亚校区）联合培...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">电子科技大学机电学院刘志亮宋迪老师出访美国...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">2017年美国密西根大学迪尔本分校（UMD）联合...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">我院设备监控与健康管理研究所教师出席美国机...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o5">
+					<div class="officeName">
+						<span>本科生教育</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">郭伟老师《现代工程设计制图》补课通知</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">转发：关于对全校本科生结余教材费进行退费的...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">转发：关于2016-2017-1学期体育重新学习的考试通知</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机械电子工程学院成功举办2016-2017学年青年...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">韩杨老师《自动控制原理》临时停课通知</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o6">
+					<div class="officeName">
+						<span>研究生教育</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">电子科技大学SMC奖学金评选通知</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">2017届省级优秀毕业生公示</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院与外国语学院研究生会成功举办交流活动</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院研究生第四、五党支部组织专题片观影...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院研究生第二党支部组织专题片观影学习</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o7">
+					<div class="officeName">
+						<span>学生事务</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">电子科技大学2016年SMC奖学金公示名单</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">我院2016年SMC奖学金评审会议圆满举行</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学子在第五届大学生宿舍文化节中再创佳绩</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院2015-2016年度优秀班集体创建结果公示</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机械电子工程学院“传承优秀，积淀未来”2015...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="office o8">
+					<div class="officeName">
+						<span>继续教育</span>
+						<a href="file:///">more</a>
+					</div>
+					<ul class="officeList">
+						<li>
+							<a href="file:///">中航凯天网络教育机械设计制造及其自动化专升...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机械电子工程学院举行2014年继教迎新晚会</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">杨平院长一行应邀参加第十五届全国机械工程学...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院继教学生取得九里提校区篮球赛小组冠军</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+						<li>
+							<a href="file:///">机电学院举办第十届“成电纵横”科技文化月演...</a>
+							<span><img src="static/img/new.png" alt="new"></span>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="sidebar">
+				<div class="tabs">
+					<p>重要通知&nbsp;&nbsp;Important Notice</p>
+				</div>
+				<div class="tabContent">
+					<div class="tabPane">
+						<ul id="roll" style="margin-top:0px;">
+							<li id="li0" style="top: 375px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.07</p>
+						    			<p class="day">11</p>
+									</div>
+									<p class="tabInfo">我校第二届全国大学生暑期夏令营取得圆满成功！</p>
+								</a>
+							</li>
+                		    <li id="li1" style="top: 450px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.10</p>
+								    	<p class="day">17</p>
+									</div>
+								<p class="tabInfo">关于组织收看反腐专题片《永远在路上》的通知</p>
+								</a>
+							</li>
+                		    <li id="li2" style="top: 525px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.10</p>
+						    			<p class="day">14</p>
+									</div>
+									<p class="tabInfo">西安交通大学雷亚国教授学术报告通知</p>
+								</a>
+							</li>
+            	        	<li id="li3" style="top: 0px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.10</p>
+						    			<p class="day">14</p>
+									</div>
+									<p class="tabInfo">西安交通大学雷亚国教授学术报告通知</p>
+								</a>
+							</li>
+            	            <li id="li4" style="top: 75px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.10</p>
+							    		<p class="day">11</p>
+									</div>
+									<p class="tabInfo">香港大学黄国全教授学术报告通知</p>
+								</a>
+							</li>
+							<li id="li5" style="top: 150px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.10</p>
+								    	<p class="day">10</p>
+									</div>
+									<p class="tabInfo">关于组织收看收听纪念红军长征胜利80周年纪念活动现场直播的通知</p>
+								</a>
+							</li>
+                    		<li id="li6" style="top: 225px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.10</p>
+								    	<p class="day">10</p>
+									</div>
+									<p class="tabInfo">关于组织收看收听纪念红军长征胜利80周年纪念活动现场直播的通知</p>
+								</a>
+							</li>
+        	        	    <li id="li7" style="top: 300px;">
+								<a href="file:///">
+									<div class="date">
+										<p class="year">2016.08</p>
+								    	<p class="day">23</p>
+									</div>
+									<p class="tabInfo">成电，别来无恙———欢迎校友回家</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="column">
+		<div class="columnContainer">
+			<div class="columnBox">
+				<p class="chineseName">榜样</p>
+				<p class="englishName">Model Group</p>
+				<a href="file:///" target="_blank" style="display:block;">
+					<img src="static/img/modal.jpg" style="display:block;width:100%;">
+					<p class="modelInfo">记2016年唐立新奖学金获得者——武翔</p>
+					<p class="modelDetail">
+						武翔，IEEE学生会员，美国物理协会会员，机械电子工程学院2013级本科生。曾获得“唐立新奖学金”“人民特等奖学金”...
+					</p>
+					</a><a href="file:///" class="modelMore" target="_blank">more</a>
+
+			</div>
+			<div class="columnBox columnMiddle">
+				<p class="chineseName">院企合作</p>
+				<p class="englishName">Enterprise Cooperation</p>
+				<a href="file:///" target="_blank">
+					<img src="static/img/enterprise.png">
+				</a>
+				<ul class="enterpriseInfo">
+					<li>
+						<a href="file:///" target="_blank">机电学院与四川迈克生物科技股份有限公司签订...</a>
+					</li>
+					<li>
+						<a href="file:///" target="_blank">电子科技大学与中航长飞公司签署战略合作协议</a>
+					</li>
+				</ul>
+				<a href="file:///" class="modelMore" target="_blank">more</a>
+			</div>
+			<div class="columnBox">
+				<p class="chineseName">学院专栏</p>
+				<p class="englishName">School Column</p>
+				<a href="file:///" class="schoolColumn" target="_blank">
+					<div>
+						<p>国家级实验教学示范中心</p>
+						<p>机电与控制工程实验教学中心</p>
+					</div>
+					<img src="static/img/column1.png">
+				</a>
+				<a href="file:///" class="schoolColumn" target="_blank">
+					<div>
+						<p>工程训练中心</p>
+					</div>
+					<img src="static/img/column2.png">
+				</a>
+				<div class="schoolColumn">
+					<div style="padding-top:0px;">
+						<a href="">电子科技大学机器人队</a>
+						<a href="">机电学院创新创业中心</a>
+					</div>
+					<img src="static/img/column3.png">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footerContainer">
+			<div class="schoolIntro">
+				<p>机械电子学院</p>
+				<ul>
+					<li>
+						<span>学院地址：</span>
+						<span class="schoolAddr">四川省成都市高新区（西区）西源大道2006号电子科技大学清水河校区主楼C1区</span>
+					</li>
+					<li>联系电话：028-61830229</li>
+					<li>传真号码：028-61830227</li>
+					<li>技术支持：云创工作室</li>
+				</ul>
+			</div>
+			<div class="schoolIntro hotList">
+				<p>快速链接</p>
+				<ul>
+					<li>
+						<a href="//" target="_blank">>机械电子工程学院微信官方网站</a>
+					</li>
+					<li>
+						<a href="//" target="_blank">>电子科技大学</a>
+					</li>
+					<li>
+						<a href="//" target="_blank">>电子科技大信息门户系统</a>
+					</li>
+					<li>
+						<a href="//" target="_blank">>在线图书馆</a>
+					</li>
+					<li>
+						<a href="//" target="_blank">>后台入口</a>
+					</li>
+				</ul>
+			</div>
+			<div class="schoolIntro hotList">
+				<p>关于我们</p>
+				<a href="//" target="_blank">
+					<img src="static/img/map.png" style="border:0;margin-top:12px;">
+				</a>
+			</div>
+			<div class="schoolIntro" style="float:right">
+				<p>微信社区</p>
+				<a href target="_blank">
+					<img src="static/img/wechat.png" style="margin-top:12px">
+				</a>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="static/js/rolTab.js"></script>
+</body>
+</html>

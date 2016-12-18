@@ -4,6 +4,7 @@ import (
 	"JxdzManager/models"
 	_ "JxdzManager/routers"
 	"fmt"
+	// "time"
 
 	"github.com/astaxie/beego"
 )
@@ -31,19 +32,35 @@ func main() {
 	// 	beego.Error(err)
 	// }
 	// models.InitAndClear()
-	// models.AddCategory("寄语1222", 6)
+	// models.AddCategory("寄语", 25, "文章列表", "")
 
-	// i := models.DelCategory(9, "55555", 2)
+	// i := models.DelCategory(24, "寄语1222", 5)
 	// beego.Debug(i)
 	// beego.Debug(strings.Replace("a,,d,1,2", ",", "", -1))
 
-	// cate, err := models.GetAllCategories()
-	// if err != nil {
-	// 	beego.Error(err)
-	// }
+	// cate, _ := models.CreateCateList()
+	//
 	// for i := 0; i < len(cate); i++ {
-	// 	beego.Debug(cate[i])
+	// 	fmt.Println(cate[i].CateOne)
+	// 	fmt.Println(cate[i].DepthNumber)
+	// 	fmt.Println(cate[i].Id)
+	// 	// for j := 0; j < len(cate[i].CateTwo); j++ {
+	// 	// 	fmt.Println(cate[i].CateTwo[j])
+	// 	// }
+	// 	for j := 0; j < len(cate[i].CateOnesChild); j++ {
+	// 		fmt.Println(cate[i].CateOnesChild[j])
+	// 	}
 	// }
+
+	// for i := 0; i < len(cates); i++ {
+	// 	fmt.Println(cates[i])
+	//
+	// }
+
+	// tNow := time.Now()
+	// timeNow := tNow.Format("2006-01-02")
+	// beego.Debug(timeNow)
+
 	users, _ := models.GetAllUsers()
 	for i := 0; i < len(users); i++ {
 		fmt.Println(users[i])
@@ -54,6 +71,7 @@ func main() {
 		fmt.Println(Cates[i])
 	}
 
+	beego.AddFuncMap("Repeat", repeat)
 	// beego.Debug(strings.Trim(",12,3,", ","))
 	// emps, err := models.SelectEmployeeByDepartment("jixie")
 	// // beego.Debug(len(emps))
@@ -66,4 +84,11 @@ func main() {
 	// 	beego.Error(err)
 	// }
 	beego.Run()
+}
+
+func repeat(depth int) (out string) {
+	for i := 1; i < depth; i++ {
+		out += "--"
+	}
+	return out
 }

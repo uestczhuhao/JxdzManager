@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -12,6 +12,17 @@ type FormController struct {
 }
 
 func (c *FormController) Get() {
+	v := c.GetSession("authority")
+	if v == 1 {
+		c.Data["IsSuper"] = true
+		c.Data["admin"] = "超级"
+	} else if v == 2 {
+		c.Data["IsSuper"] = false
+		c.Data["admin"] = "普通"
+	} else {
+		c.Redirect("/", 302)
+	}
+
 	c.TplName = "category.html"
 	idstr := c.Input().Get("id")
 	name := c.Input().Get("name")
@@ -34,6 +45,8 @@ func (c *FormController) Get() {
 		}
 	}
 	c.Data["CateName"], c.Data["Categories"] = models.StandardOut()
+
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
 	c.Data["CateName"] = models.SortCategory()
 }
 
@@ -41,9 +54,11 @@ func (c *FormController) Post() {
 	labelname := c.Input().Get("catename")
 	parentidstr := c.Input().Get("cid")
 	parentid, err := strconv.Atoi(parentidstr)
-	beego.Debug(labelname)
-	beego.Debug(parentid)
-	err = models.AddCategory(labelname, parentid)
+	typ := c.Input().Get("typ")
+	cont := c.Input().Get("content")
+	beego.Debug(labelname, parentid)
+	beego.Debug(typ, cont)
+	err = models.AddCategory(labelname, parentid, typ, cont)
 	if err != nil {
 		beego.Error(err)
 	}

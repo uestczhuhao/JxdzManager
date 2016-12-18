@@ -1,4 +1,4 @@
-package controllers
+package Back
 
 import (
 	"JxdzManager/models"
@@ -22,7 +22,7 @@ func (c *AddLinkController) Get() {
 	} else {
 		c.Redirect("/", 302)
 	}
-
+	c.Data["CateNameDepthOne"] = models.GetAllCategoriesDepthIsOne()
 	c.Data["CateName"] = models.SortCategory()
 	c.TplName = "addLink.html"
 }
