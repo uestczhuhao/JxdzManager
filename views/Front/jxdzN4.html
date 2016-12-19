@@ -24,10 +24,12 @@
     .teacherTab{
         text-decoration:none;
         font-size:16px;
-        float:left;
-        padding-right:40px;
+        padding-left:0px;
+        padding-right:36px;
         color:#ebb614;
         cursor:pointer;
+        border: none;
+        background-color: #fff;
     }
     .teacherName{
         display:block;
@@ -245,7 +247,7 @@
                   {{range .LeftMenu}}
                     <li>
                         <label class="rem">
-                            <a href="Judge?ID={{.Id}}">{{.Name}}</a>
+                            <a href="Judge?ID={{.Id}}">{{.Depth |Repeat}}{{.Name}}</a>
                         </label>
                     </li>
                     {{end}}
@@ -278,125 +280,135 @@
                     <a href="/Judge?ID={{.Id}}">>&nbsp;{{.Name}}</a>
                     {{end}}
                 </div>
-            </div>
+              </div>
                 <div class="mainContent">
+                  <div class="teacherIntro">
 
-                        <form method="GET" action="/jxdzN4">
-                          <div>
-                          <input type="submit" class="teacherTab" name="Job" id="Job"  value="职称" style="width:160px;float:left;">
-                          <input type="submit" class="teacherTab" name="Doc" id="Doc"  value="博导" style="width:160px;float:left;">
-                          <input type="submit" class="teacherTab" name="Dep" id="Dep"  value="系所" style="width:160px;float:left;">
-                        </div>
-                          {{if .Show1}}
-                            <div class="teacher">
-                          <p class="teacherName">教授(研究员)</p>
-                          <div class="teacherInfo">
-                          {{range .TeachersPro}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
+                      <div class="teacherClassify">
+                        <a href="/jxdzN4?Job=职称&Id=7" class="teacherTab">职称</a>
+                        <a href="/jxdzN4?Doc=博导&Id=7" class="teacherTab">博导</a>
+                        <a href="/jxdzN4?Dep=系所&Id=7" class="teacherTab">系所</a>
                       </div>
 
-                          <div class="teacher">
-                          <p class="teacherName">副教授(高级工程师、副研究员)</p>
-                          <div class="teacherInfo">
-                            {{range .TeachersDepuPro}}
-                            <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                            {{end}}
-                          </div>
-                          </div>
-
-                          <div class="teacher">
-                          <p class="teacherName">讲师（工程师及以下）</p>
-                          <div class="teacherInfo">
-                          {{range .Teachers}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
-                        </div>
-
-
-
-                          {{else if .Show2}}
-                          <div class="teacher">
-                          <p class="teacherName">博士生导师</p>
-                          <div class="teacherInfo">
-                          {{range .Teachers}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
-                      </div>
-
-                          {{else if .Show3}}
-                          <div class="teacher">
-                          <p class="teacherName">机械工程系</p>
-                          <div class="teacherInfo">
-                          {{range .Teachers1}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
-                      </div>
-
-                          <div class="teacher">
-                          <p class="teacherName">工业工程系</p>
-                          <div class="teacherInfo">
-                          {{range .Teachers2}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
-                      </div>
-
-                        <div class="teacher">
-                          <p class="teacherName">电力电子系</p>
-                          <div class="teacherInfo">
-                          {{range .Teachers3}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
-                      </div>
-
-                      <div class="teacher">
-
-                          <p class="teacherName">工程训练中心(学院教学示范中心)</p>
-                          <div class="teacherInfo">
-                          {{range .Teachers4}}
-                          <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                          {{end}}
-                        </div>
-                      </div>
-
-                      {{else}}
-                        <div class="teacher">
+                  <!-- <form method="GET" action="/jxdzN4">
+                    <div class="teacherClassify">
+                    <input type="submit" href="/jxdzN4?Id=7" class="teacherTab" name="Job" id="Job"  value="职称">
+                    <input type="submit" class="teacherTab" name="Doc" id="Doc"  value="博导">
+                    <input type="submit" class="teacherTab" name="Dep" id="Dep"  value="系所">
+                  </div>
+                  </form> -->
+                    {{if .Show1}}
+                  <div class="teacher">
                       <p class="teacherName">教授(研究员)</p>
                       <div class="teacherInfo">
-                      {{range .TeachersPro}}
-                      <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
-                      {{end}}
-                    </div>
-                  </div>
-
-                      <div class="teacher">
-                      <p class="teacherName">副教授(高级工程师、副研究员)</p>
-                      <div class="teacherInfo">
-                        {{range .TeachersDepuPro}}
+                        {{range .TeachersPro}}
                         <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
                         {{end}}
                       </div>
-                      </div>
+                </div>
 
-                      <div class="teacher">
-                      <p class="teacherName">讲师（工程师及以下）</p>
-                      <div class="teacherInfo">
-                      {{range .Teachers}}
+                    <div class="teacher">
+                    <p class="teacherName">副教授(高级工程师、副研究员)</p>
+                    <div class="teacherInfo">
+                      {{range .TeachersDepuPro}}
                       <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
                       {{end}}
                     </div>
                     </div>
 
-                          {{end}}
+                    <div class="teacher">
+                    <p class="teacherName">讲师（工程师及以下）</p>
+                    <div class="teacherInfo">
+                    {{range .Teachers}}
+                    <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                    {{end}}
+                  </div>
+                  </div>
 
-                        </form>
-                    </div>
+
+
+                    {{else if .Show2}}
+                    <div class="teacher">
+                    <p class="teacherName">博士生导师</p>
+                    <div class="teacherInfo">
+                    {{range .Teachers}}
+                    <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                    {{end}}
+                  </div>
+                </div>
+
+                    {{else if .Show3}}
+                    <div class="teacher">
+                    <p class="teacherName">机械工程系</p>
+                    <div class="teacherInfo">
+                    {{range .Teachers1}}
+                    <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                    {{end}}
+                  </div>
+                </div>
+
+                    <div class="teacher">
+                    <p class="teacherName">工业工程系</p>
+                    <div class="teacherInfo">
+                    {{range .Teachers2}}
+                    <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                    {{end}}
+                  </div>
+                </div>
+
+                  <div class="teacher">
+                    <p class="teacherName">电力电子系</p>
+                    <div class="teacherInfo">
+                    {{range .Teachers3}}
+                    <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                    {{end}}
+                  </div>
+                </div>
+
+                <div class="teacher">
+
+                    <p class="teacherName">工程训练中心(学院教学示范中心)</p>
+                    <div class="teacherInfo">
+                    {{range .Teachers4}}
+                    <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                    {{end}}
+                  </div>
+                </div>
+
+                {{else}}
+                  <div class="teacher">
+                <p class="teacherName">教授(研究员)</p>
+                <div class="teacherInfo">
+                {{range .TeachersPro}}
+                <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                {{end}}
+              </div>
+            </div>
+
+                <div class="teacher">
+                <p class="teacherName">副教授(高级工程师、副研究员)</p>
+                <div class="teacherInfo">
+                  {{range .TeachersDepuPro}}
+                  <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                  {{end}}
+                </div>
+                </div>
+
+                <div class="teacher">
+                <p class="teacherName">讲师（工程师及以下）</p>
+                <div class="teacherInfo">
+                {{range .Teachers}}
+                <a href="/jxdzN6?ID={{.Id}}">{{.Name}}</a>
+                {{end}}
+              </div>
+              </div>
+
+                    {{end}}
+
+
+
+
+            </div>
                     <div class="pageFooter">
                     </div>
                 </div>

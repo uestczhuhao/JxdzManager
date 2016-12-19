@@ -28,7 +28,7 @@ func (c *JxdzN5Controller) Get() {
 
 	beid, _ := c.GetInt("BeId")
 	becate, _ := models.SearchCategory(beid)
-	if becate.Depth > 10 {
+	if becate.Depth > 0 {
 		c.Data["Path"] = models.FindAllFather(beid)
 		c.Data["LeftMenu"] = models.FindLeftMenu(beid)
 	} else {

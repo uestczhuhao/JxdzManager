@@ -57,26 +57,26 @@ func main() {
 	// cates = append(cates, &cate1)
 	// cate2, _ := models.SearchCategory(2)
 	// cates = append(cates, &cate2)
-	cates := models.FindLeftMenu(3)
-
-	for i := 0; i < len(cates); i++ {
-		fmt.Println(cates[i])
-
-	}
+	// cates := models.FindLeftMenu(3)
+	//
+	// for i := 0; i < len(cates); i++ {
+	// 	fmt.Println(cates[i])
+	//
+	// }
 
 	// tNow := time.Now()
 	// timeNow := tNow.Format("2006-01-02")
 	// beego.Debug(timeNow)
 
-	// users, _ := models.GetAllUsers()
-	// for i := 0; i < len(users); i++ {
-	// 	fmt.Println(users[i])
-	// }
-	// str, Cates := models.StandardOut()
-	// for i := 0; i < len(str); i++ {
-	// 	fmt.Println(str[i])
-	// 	fmt.Println(Cates[i])
-	// }
+	users, _ := models.GetAllUsers()
+	for i := 0; i < len(users); i++ {
+		fmt.Println(users[i])
+	}
+	str, Cates := models.StandardOut()
+	for i := 0; i < len(str); i++ {
+		fmt.Println(str[i])
+		fmt.Println(Cates[i])
+	}
 
 	beego.AddFuncMap("Repeat", repeat)
 	// beego.Debug(strings.Trim(",12,3,", ","))

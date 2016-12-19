@@ -224,7 +224,7 @@
                   {{range .LeftMenu}}
                     <li>
                         <label class="rem">
-                            <a href="Judge?ID={{.Id}}">{{.Name}}</a>
+                            <a href="Judge?ID={{.Id}}">{{.Depth |Repeat}}{{.Name}}</a>
                         </label>
                     </li>
                     {{end}}
@@ -262,10 +262,11 @@
                     <ul class="articleList">
                       {{range .articles}}
                         <li>
-                            <a href="jxdzN5?Id={{.Id}}" target="_blank">{{.Title}}</a>
+                            <a href="jxdzN5?Id={{.Id}}&BeId={{.BelongsId}}" target="_blank">{{.Title}}</a>
                             <span>{{.CreatTime}}</span>
                         </li>
                       {{end}}
+                    </ul>
                     <div class="pageFooter">
                     </div>
                 </div>

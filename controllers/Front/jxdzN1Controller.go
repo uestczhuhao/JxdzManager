@@ -26,12 +26,11 @@ func (c *JxdzN1Controller) Get() {
 
 	c.Data["CatesForMenu"], err = models.CreateCateList()
 
-	catetest, _ := models.SearchCategory(id)
-	catetestfather, _ := models.SearchCategory(catetest.ParentID)
-	// beego.Debug(flag)
-	if catetestfather.Type == "目录" && catetestfather.Depth != 1 {
-		id = catetest.ParentID
-	}
+	// catetest, _ := models.SearchCategory(id)
+	// catetestfather, _ := models.SearchCategory(catetest.ParentID)
+	// if catetestfather.Type == "目录" && catetestfather.Depth != 1 {
+	// 	id = catetest.ParentID
+	// }
 	c.Data["Path"] = models.FindAllFather(id)
 	c.Data["LeftMenu"] = models.FindLeftMenu(id)
 	c.TplName = "Front/jxdzN1.html"

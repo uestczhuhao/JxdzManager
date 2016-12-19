@@ -264,7 +264,7 @@
                   {{range .LeftMenu}}
                     <li>
                         <label class="rem">
-                            <a href="Judge?ID={{.Id}}">{{.Name}}</a>
+                            <a href="Judge?ID={{.Id}}">{{.Depth |Repeat}}{{.Name}}</a>
                         </label>
                     </li>
                     {{end}}
