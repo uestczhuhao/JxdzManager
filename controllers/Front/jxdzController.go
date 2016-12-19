@@ -12,6 +12,7 @@ type JxdzController struct {
 
 func (c *JxdzController) Get() {
 	var err error
+
 	c.Data["CatesForMenu"], err = models.CreateCateList()
 
 	if err != nil {
@@ -20,7 +21,9 @@ func (c *JxdzController) Get() {
 	c.Data["link"] = models.GetAllLinker()
 
 	c.Data["HotNews"] = models.SearchArticleByBelongid(23)
-	c.Data["News1"] = models.SearchArticleByBelongid(27)
+
+	News1 := models.SearchArticleByBelongid(27)
+	c.Data["News1"] = News1
 	c.Data["News2"] = models.SearchArticleByBelongid(28)
 	c.Data["News3"] = models.SearchArticleByBelongid(29)
 	c.Data["News4"] = models.SearchArticleByBelongid(30)

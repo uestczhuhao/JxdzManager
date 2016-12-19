@@ -71,7 +71,14 @@ func SearchArticleByBelongid(id int) []*Content {
 			articles = append(articles, allarticle[i])
 		}
 	}
-	return articles
+	var lenth int = len(articles)
+	var articlesout []*Content
+	for j := 0; j < lenth; j++ {
+		var temp *Content
+		temp = articles[lenth-1-j]
+		articlesout = append(articlesout, temp)
+	}
+	return articlesout
 }
 
 func UpdateArticle(id int) error {

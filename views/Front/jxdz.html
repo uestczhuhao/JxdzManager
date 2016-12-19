@@ -234,6 +234,10 @@
             {{range .News1}}
 						<li>
 							<a href="/jxdzN5?Id={{.Id}}&BeId=27">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
 						</li>
               {{end}}
 					</ul>

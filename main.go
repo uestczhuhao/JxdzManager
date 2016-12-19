@@ -4,7 +4,7 @@ import (
 	"JxdzManager/models"
 	_ "JxdzManager/routers"
 	"fmt"
-	// "time"
+	"time"
 
 	"github.com/astaxie/beego"
 )
@@ -79,6 +79,7 @@ func main() {
 	}
 
 	beego.AddFuncMap("Repeat", repeat)
+	beego.AddFuncMap("Isnew", IsNewArticle)
 	// beego.Debug(strings.Trim(",12,3,", ","))
 	// emps, err := models.SelectEmployeeByDepartment("jixie")
 	// // beego.Debug(len(emps))
@@ -91,6 +92,16 @@ func main() {
 	// 	beego.Error(err)
 	// }
 	beego.Run()
+}
+func IsNewArticle(creattime string) (isnew bool) {
+	const shortForm = "2006-01-02"
+	d, _ := time.Parse(shortForm, creattime)
+	if time.Since(d).Hours() < 72 {
+		isnew = true
+	} else {
+		isnew = false
+	}
+	return isnew
 }
 
 func repeat(depth int) (out string) {
