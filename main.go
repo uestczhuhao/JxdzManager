@@ -3,7 +3,6 @@ package main
 import (
 	"JxdzManager/models"
 	_ "JxdzManager/routers"
-	"fmt"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -63,23 +62,31 @@ func main() {
 	// 	fmt.Println(cates[i])
 	//
 	// }
-
+	// search := models.SearchFunction("学子")
+	//
+	// for i := 0; i < len(search); i++ {
+	// 	beego.Debug(search[i].Title)
+	// }
 	// tNow := time.Now()
 	// timeNow := tNow.Format("2006-01-02")
 	// beego.Debug(timeNow)
 
-	users, _ := models.GetAllUsers()
-	for i := 0; i < len(users); i++ {
-		fmt.Println(users[i])
-	}
-	str, Cates := models.StandardOut()
-	for i := 0; i < len(str); i++ {
-		fmt.Println(str[i])
-		fmt.Println(Cates[i])
-	}
+	// users, _ := models.GetAllUsers()
+	// for i := 0; i < len(users); i++ {
+	// 	fmt.Println(users[i])
+	// }
+	// str, Cates := models.StandardOut()
+	// for i := 0; i < len(str); i++ {
+	// 	fmt.Println(str[i])
+	// 	fmt.Println(Cates[i])
+	// }
 
 	beego.AddFuncMap("Repeat", repeat)
 	beego.AddFuncMap("Isnew", IsNewArticle)
+	beego.AddFuncMap("Counttop", CountTopOfImport)
+	beego.AddFuncMap("Idconvert", IdConvert)
+	beego.AddFuncMap("Istoolong", TilIsToolong)
+	beego.AddFuncMap("Idconvrtforimg", IdConverForImg)
 	// beego.Debug(strings.Trim(",12,3,", ","))
 	// emps, err := models.SelectEmployeeByDepartment("jixie")
 	// // beego.Debug(len(emps))
@@ -93,6 +100,50 @@ func main() {
 	// }
 	beego.Run()
 }
+
+// func Truncation(title string)(trun string){
+//   lenth:=len(title)
+// 	if lenth<15{
+// 		trun=title
+// 	}else {
+//
+// 	}
+// }
+func IdConverForImg(id int) (idout int) {
+	HotNews := models.SearchArticleByBelongid(23)
+	NewsShow := HotNews[0:5]
+	for i := 0; i < 5; i++ {
+		if NewsShow[i].Id == id {
+			idout = i + 1
+			return idout
+		}
+	}
+	return idout
+}
+
+func TilIsToolong(title string) (IsorNot bool) {
+	if len(title) > 37*3 {
+		IsorNot = true
+	} else {
+		IsorNot = false
+	}
+	return IsorNot
+}
+
+func IdConvert(idin int) (idout int) {
+	idout = 33 - idin
+	return idout
+}
+func CountTopOfImport(idin int) (top int) {
+	id := 33 - idin
+	if id < 3 {
+		top = 75 * (id + 5)
+	} else {
+		top = 75 * (id - 3)
+	}
+	return top
+}
+
 func IsNewArticle(creattime string) (isnew bool) {
 	const shortForm = "2006-01-02"
 	d, _ := time.Parse(shortForm, creattime)
@@ -105,8 +156,15 @@ func IsNewArticle(creattime string) (isnew bool) {
 }
 
 func repeat(depth int) (out string) {
-	for i := 1; i < depth; i++ {
-		out += "--"
+	if depth > 20 {
+		depth = depth % 50
+	}
+	if depth == 1 || depth == 2 {
+		out += ""
+	} else {
+		for i := 1; i < depth-1; i++ {
+			out += "--"
+		}
 	}
 	return out
 }

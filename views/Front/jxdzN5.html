@@ -249,7 +249,7 @@
 			<div class="search">
 				<img src="static/img/search.png" onclick="changeView()">
 				<div class="searchText" id="searchText" style="display:none">
-					<form action="file:///J:/jxdz_html/jxdz.html" method="post">
+					<form action="jxdz.html" method="Post">
 						<input type="text" name="search" placeholder="新闻搜索...">
 
 					</form>
@@ -260,6 +260,7 @@
     <div class="main">
         <div class="mainContainer">
             <div class="mainLeft">
+              {{if .IsShowRoot}}
                 <ul class="root">
                   {{range .LeftMenu}}
                     <li>
@@ -269,24 +270,18 @@
                     </li>
                     {{end}}
                 </ul>
+                {{end}}
+
+                {{if .isShowHotNews}}
                 <p class="hotnewsTitle">热点新闻</p>
                 <ul class="hotNews">
-                    <li>
-                        <a href="//" target="_blank">2016年电子科技大学国际青年学者...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">祝贺我院两名老师获2016年"电子...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">我院学子在“创青春”全国大学生...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">学院探索实施“新四会”学生励志...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">学校专题报道我院“两学一做”先...</a>
-                    </li>
+                  {{range .hotNews}}
+                  <li>
+                      <a href="jxdzN5?Id={{.Id}}&BeId={{.BelongsId}}" target="_blank">{{substr .Title 0 16}}...</a>
+                  </li>
+                  {{end}}
                 </ul>
+                {{end}}
             </div>
             <div class="mainRight">
                 <div class="mainTitle">
@@ -324,12 +319,19 @@
                             	</p>
 							              </div>
                         </div>
-
-
                     </div>
+
+
+
                     <div class="pageFooter">
+                      <!-- <p class="nextPage">
+                      <a href="#">上一篇：学校关注我院可靠性团队在IEEE TR和RESS等可靠性领域顶级期刊连续发表多篇论文</a>
+                    </p> -->
+                    {{$Nextid := .NextArticle.Id}}
                         <p class="nextPage">
-                            <a href="//">下一篇：华西希望集团总裁 王德根（1990级）</a>
+                          {{if ne $Nextid 0}}
+                            <a href="/jxdzN5?Id={{.NextArticle.Id}}&BeId={{.NextArticle.BelongsId}}">下一篇：{{.NextArticle.Title}}</a>
+                          {{end}}
                         </p>
                     </div>
                 </div>

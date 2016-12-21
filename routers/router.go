@@ -14,6 +14,7 @@ func init() {
 	beego.Router("/category", &Back.FormController{})
 	beego.Router("/addTeacher", &Back.AddTeacherController{})
 	beego.Router("/addLink", &Back.AddLinkController{})
+	beego.Router("/addDownload", &Back.AddDownloadController{})
 	beego.Router("/user", &Back.UserController{})
 
 	beego.Router("/teacherlist", &Back.TeacherListController{})

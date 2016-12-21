@@ -20,7 +20,8 @@ func (c *JxdzController) Get() {
 	}
 	c.Data["link"] = models.GetAllLinker()
 
-	c.Data["HotNews"] = models.SearchArticleByBelongid(23)
+	HotNews := models.SearchArticleByBelongid(23)
+	c.Data["HotNews"] = HotNews[0:5]
 
 	News1 := models.SearchArticleByBelongid(27)
 	c.Data["News1"] = News1
@@ -31,9 +32,11 @@ func (c *JxdzController) Get() {
 	c.Data["News6"] = models.SearchArticleByBelongid(32)
 	c.Data["News7"] = models.SearchArticleByBelongid(33)
 	c.Data["News8"] = models.SearchArticleByBelongid(34)
+	NewsImp := models.SearchArticleByBelongid(35)
+	c.Data["Newsimp"] = NewsImp[0:8]
 
-	// for i := 0; i < len(links); i++ {
-	// 	beego.Debug(links[i].Title)
+	// for i := 0; i < len(NewsImp); i++ {
+	// 	beego.Debug(NewsImp[i].Title)
 	// }
 	c.TplName = "Front/jxdz.html"
 }

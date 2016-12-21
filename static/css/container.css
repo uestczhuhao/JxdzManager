@@ -23,7 +23,7 @@
 		float:left;
 		display:block;
 		background:#828787;
-		
+
 	}
 	.rotationList li{
 		position:absolute;
@@ -42,7 +42,7 @@
 		margin:0;
 		padding:0;
 	}
-	
+
 	.label{
 		width:410px;
 		height:300px;
@@ -102,23 +102,23 @@
 	}
 	/*轮播效果*/
 	#ro1{
-		
+
 		animation:rota1 20s infinite ;
 	}
 	#ro2{
-	
+
 		animation:rota2 20s infinite ;
 	}
 	#ro3{
-		
+
 		animation:rota3 20s infinite;
 	}
 	#ro4{
-	    
+
 		animation:rota4 20s infinite ;
 	}
 	#ro5{
-		
+
 		animation:rota5 20s infinite ;
 	}
 	@keyframes rota1{
@@ -159,7 +159,7 @@
 		99.75% {opacity:1;z-index:5}
 		100% {opacity:0;z-index:4}
 	}
-	
+
 	.indicators{
 		overflow:hidden;
 		position:relative;
@@ -177,7 +177,7 @@
 		float:left;
 		background:url(../img/btn-normal.png);
 		cursor:pointer;
-		
+
 	}
 	/*content 内容*/
 	.content{
@@ -215,7 +215,7 @@
 	.o1 div{
 		background:url(../img/office_01.png) no-repeat;
 		background-position:0 30px;
-		
+
 	}
 	.office a{
 		color:#444;
@@ -242,11 +242,15 @@
 		padding:2px 0;
 		line-height:18px;
 		height:18px;
-		white-space:nowrap;
-		text-overflow:ellipsis;
-		overflow:hidden;
+
 	}
     .officeList li a{
+      display: inline-block;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+  		overflow:hidden;
+      vertical-align: middle;
+      max-width: 310px;
 		font-size:12px;
 	}
 	.o2 div{
@@ -267,7 +271,7 @@
 		background:url(../img/office_04.png) no-repeat;
 		background-position:0 30px;
 	}
-	
+
 	.o5 div{
 		background:url(../img/office_05.png) no-repeat;
 		background-position:0 30px;
@@ -333,6 +337,7 @@
 	}
 	.tabPane li a{
 		display:block;
+
 		color:#fff;
 		margin:0;
 		padding:0;
@@ -459,4 +464,3 @@
 		display:block;
 		color:#444;
 	}
-	

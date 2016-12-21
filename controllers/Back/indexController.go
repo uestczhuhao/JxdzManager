@@ -48,7 +48,10 @@ func (c *IndexController) Post() {
 	from := c.Input().Get("from")
 	content := c.Input().Get("content")
 	timenow := time.Now().Format("2006-01-02")
-	err := models.AddContent(cateId, title, content, from, timenow)
+	_, img, _ := c.GetFile("picture")
+	// imgname := img.FileName
+	// beego.Debug(reflect.TypeOf(img.Filename))
+	err := models.AddContent(cateId, title, content, from, timenow, "static/img/"+img.Filename)
 	if err != nil {
 		beego.Debug(err)
 	}

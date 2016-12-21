@@ -20,6 +20,9 @@ func (c *JxdzN6Controller) Get() {
 	c.Data["CatesForMenu"], err = models.CreateCateList()
 	c.Data["link"] = models.GetAllLinker()
 
+	hotNewsList := models.SearchArticleByBelongid(23)
+	c.Data["hotNews"] = hotNewsList[0:5]
+
 	c.Data["Path"] = models.FindAllFather(7)
 	c.Data["LeftMenu"] = models.FindLeftMenu(7)
 	// beego.Debug(teacher)

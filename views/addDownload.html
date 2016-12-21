@@ -1,0 +1,132 @@
+{{template "header.html" .}}
+
+
+
+                <div class="panel admin-panel">
+                    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span></strong></div>
+                    <div class="body-content">
+                        <form method="POST" class="form-x" action="addDownload.html">
+
+                          <if condition="$iscid eq 1">
+                              <div class="form-group">
+                                  <div class="label">
+                                      <label style="font-size:16px">栏目分类：</label>
+                                  </div>
+                                  <div class="field" style="display:inline-block">
+                                      <select name="cid" class="input w50">
+                            <option value="">请选择分类</option>
+                            {{range .CateName}}
+                              <li>
+                                <option value="{{.Id}}">{{.Name}}</option>
+
+                              </li>
+                              {{end}}
+
+                          </select>
+                                      <div class="tips"></div>
+                                  </div>
+                              </div>
+
+                          </if>
+
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">标题：</label>
+                                </div>
+                                <div class="field" style="display:inline-block">
+                                    <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label style="font-size:16px">下载地址：</label>
+                                </div>
+                                <div class="field" style="display:inline-block">
+                                    <input type="text" class="input w50" value="" name="linker" data-validate="required:请输入标题" />
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="label">
+                                    <label></label>
+                                </div>
+                                <div class="field">
+                                    <!-- <input type="button" id="mysubmit" value="tj" onclick="" /> -->
+                                    <button class="button bg-main icon-check-square-o" name="mysubmit" id="mysubmit" type="submit" style="font-size:20px"> 提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->'#editor_id'
+    <!-- jQuery Js -->
+    <script src="static/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="static/assets/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="static/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="static/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="static/assets/js/morris/morris.js"></script>
+    <script src="static/assets/js/easypiechart.js"></script>
+    <script src="static/assets/js/easypiechart-data.js"></script>
+
+    <script src="static/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+    <!-- Custom Js -->
+    <script src="static/assets/js/custom-scripts.js"></script>
+    <!-- kindeditor -->
+    <script charset="utf-8" src="static/kindeditor-4.1.10/kindeditor.js"></script>
+    <script charset="utf-8" src="static/kindeditor-4.1.10/lang/zh_CN.js"></script>
+
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+            var editor = K.create('textarea[name="content"]');
+        });
+
+        // $("#mysubmit").click(function() {
+        //     //取得HTML内容?
+        //     //同步数据后可以直接取得textarea的value?
+        //     editor.sync();
+        //     var html = document.getElementById('addeditor_id').value; //原生API
+        //     $("#schtmlnr").val(html); //把KindEditor产生的html代码放到schtmlnr里面，用于提交
+        //     document.getElementById("mysubmit");
+        // });
+    </script>
+    <!-- <script>
+      function check(i){
+        if(document.getElementById(i).style=="none"){
+          document.getElementById(i).style="block";
+        }else{
+          document.getElementById(i).style="none";
+        }
+      }
+    </script> -->
+
+</body>
+
+</html>
+}
+</script>
+
+</body>
+
+</html>

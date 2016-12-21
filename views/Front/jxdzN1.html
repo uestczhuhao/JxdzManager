@@ -204,7 +204,7 @@
 			<div class="search">
 				<img src="static/img/search.png" onclick="changeView()">
 				<div class="searchText" id="searchText" style="display:none">
-					<form action="file:///J:/jxdz_html/jxdz.html" method="post">
+          <form action="jxdz.html" method="Post">
 						<input type="text" name="search" placeholder="新闻搜索...">
 
 					</form>
@@ -216,33 +216,39 @@
         <div class="mainContainer">
             <div class="mainLeft">
                 <ul class="root">
-                  {{range .LeftMenu}}
-                    <li>
-                        <label class="rem">
-                            <a href="Judge?ID={{.Id}}">{{.Depth |Repeat}}{{.Name}}</a>
-                        </label>
-                    </li>
-                    {{end}}
-
-
+                  {{range .LeftMenuDepthTwo}}
+                  {{if eq .ChildID "0"}}
+                  <li>
+                      <label class="rem">
+                          <a href="Judge?ID={{.Id}}">{{.Name}}</a>
+                      </label>
+                  </li>
+                  {{else}}
+                  <li onclick="view()">
+                       <span class="view" style="background:url(static/img/close.png) 0 1px no-repeat;"></span>
+                      <label>
+                          <a href="Judge?ID={{.Id}}">{{.Name}}</a>
+                      </label>
+                      <ul class="level2" id="gra1" style="display:block;">
+                        {{range $.LeftMenuDepthThree}}
+                          <li>
+                              <label class="rem">
+                                  <a href="Judge?ID={{.Id}}">{{.Name}}</a>
+                              </label>
+                          </li>
+                        {{end}}
+                      </ul>
+                  </li>
+                  {{end}}
+                  {{end}}
                 </ul>
                 <p class="hotnewsTitle">热点新闻</p>
                 <ul class="hotNews">
-                    <li>
-                        <a href="//" target="_blank">2016年电子科技大学国际青年学者...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">祝贺我院两名老师获2016年"电子...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">我院学子在“创青春”全国大学生...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">学院探索实施“新四会”学生励志...</a>
-                    </li>
-                       <li>
-                        <a href="//" target="_blank">学校专题报道我院“两学一做”先...</a>
-                    </li>
+                  {{range .hotNews}}
+                  <li>
+                      <a href="jxdzN5?Id={{.Id}}&BeId={{.BelongsId}}" target="_blank">{{substr .Title 0 16}}...</a>
+                  </li>
+                  {{end}}
                 </ul>
             </div>
             <div class="mainRight">

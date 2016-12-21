@@ -42,6 +42,9 @@ func (c *JxdzN4Controller) Get() {
 	if err != nil {
 		beego.Error(err)
 	}
+
+	hotNewsList := models.SearchArticleByBelongid(23)
+	c.Data["hotNews"] = hotNewsList[0:5]
 	c.Data["Path"] = models.FindAllFather(id)
 	c.Data["LeftMenu"] = models.FindLeftMenu(id)
 	c.TplName = "Front/jxdzN4.html"

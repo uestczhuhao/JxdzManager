@@ -139,15 +139,19 @@
                         <ul class="nav nav-second-level">
 
 
-                            <ul class="nav nav-second-level">
-                              {{range .CateName}}
-                              <li>
-                                  <a href="index.html?OneDepthId={{.Id}}">{{.Name}}</a>
+                            <li>
+                                <a href="/index">添加文章</a>
+                            </li>
+                            <li>
+                                <a href="/addTeacher">添加教师</a>
+                            </li>
+                            <li>
+                                <a href="/addLink">添加链接</a>
+                            </li>
+                            <li>
+                                <a href="/Judge?ID={{.Id}}">添加下载</a>
+                            </li>
 
-                              </li>
-
-                              {{end}}
-                            </ul>
                         </ul>
                     </li>
                     {{if .IsSuper}}

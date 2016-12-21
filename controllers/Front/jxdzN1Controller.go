@@ -24,6 +24,9 @@ func (c *JxdzN1Controller) Get() {
 	c.Data["pageContent"] = cateOnePage.Content
 	c.Data["link"] = models.GetAllLinker()
 
+	hotNewsList := models.SearchArticleByBelongid(23)
+	c.Data["hotNews"] = hotNewsList[0:5]
+
 	c.Data["CatesForMenu"], err = models.CreateCateList()
 
 	// catetest, _ := models.SearchCategory(id)
@@ -33,6 +36,8 @@ func (c *JxdzN1Controller) Get() {
 	// }
 	c.Data["Path"] = models.FindAllFather(id)
 	c.Data["LeftMenu"] = models.FindLeftMenu(id)
+	c.Data["LeftMenuDepthTwo"] = models.FindLeftMenuDepthTwo(id)
+	c.Data["LeftMenuDepthThree"] = models.FindLeftMenuDepthThree(id)
 	c.TplName = "Front/jxdzN1.html"
 
 }

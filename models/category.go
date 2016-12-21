@@ -31,6 +31,12 @@ type CategoryListOne struct {
 	CateOnesChild []*Category
 }
 
+type CategoryLeftMenuTwo struct {
+	Id        int
+	CateTwo   *Category
+	CateThree []*Category
+}
+
 //作为测试用的初始化函数
 func InitAndClear() {
 	AddCategory("学院概况", 0, "目录", "")
@@ -254,6 +260,43 @@ func FindLeftMenu(id int) []*Category {
 	return LeftMenu
 }
 
+func FindLeftMenuDepthTwo(id int) []*Category {
+	cate, _ := SearchCategory(id)
+	catefather, _ := SearchCategory(cate.ParentID)
+	LeftMenu, _ := FindAllSon(catefather.Id)
+	if cate.Depth == 100 {
+		LeftMenu = FindDepthIsHigh()
+		return LeftMenu
+	} else if cate.Depth == 200 {
+		LeftMenu = FindDepthIsHigh()
+		return LeftMenu
+	}
+	return LeftMenu
+}
+
+func FindLeftMenuDepthThree(id int) []*Category {
+	cate, _ := SearchCategory(id)
+	catefather, _ := SearchCategory(cate.ParentID)
+	LeftMenu, _ := FindAllChild(catefather.Id)
+	if cate.Depth == 100 {
+		LeftMenu = FindDepthIsHigh()
+		return LeftMenu
+	} else if cate.Depth == 200 {
+		LeftMenu = FindDepthIsHigh()
+		return LeftMenu
+	}
+	LeftMenuOut := make([]*Category, 0)
+	for i := 0; i < len(LeftMenu); i++ {
+		if LeftMenu[i].Depth == 3 && LeftMenu[i].ParentID == 3 {
+			var temp *Category
+			temp = LeftMenu[i]
+			LeftMenuOut = append(LeftMenuOut, temp)
+		}
+	}
+	return LeftMenuOut
+}
+
+// func CreateLeftMenu(){}
 //寻找所有的儿子节点节点
 func FindAllSon(id int) ([]*Category, error) {
 	var son []*Category
@@ -314,7 +357,14 @@ func StandardOut() ([]string, []*Category) {
 		beego.Error(err)
 	}
 	for i = 0; i < len(CateNotSort); i++ {
-		j := CateSort[i].Depth - 1
+		var j int
+		if CateSort[i].Depth > 20 {
+			var depth int = CateSort[i].Depth
+			depth = depth % 50
+			j = depth
+		} else {
+			j = CateSort[i].Depth - 1
+		}
 		StanOut = append(StanOut, strings.Repeat("--", j)+CateSort[i].Name)
 	}
 	CateOutPut = CateSort[0:i]

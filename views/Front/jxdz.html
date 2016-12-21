@@ -183,7 +183,7 @@
 			<div class="search">
 				<img src="static/img/search.png" onclick="changeView()">
 				<div class="searchText" id="searchText" style="display:none">
-					<form action="file:///J:/jxdz_html/jxdz.html" method="post">
+					<form action="jxdz.html" method="Post">
 						<input type="text" name="search" placeholder="新闻搜索...">
 
 					</form>
@@ -195,9 +195,10 @@
 		<div class="shadow">
 			<ul class="rotationList">
         {{range .HotNews}}
-				<li id="ro{{.Id}}">
+        {{$idout := .Id|Idconvrtforimg}}
+				<li id="ro{{$idout}}">
 					<a href="/jxdzN5?Id={{.Id}}&BeId=23" class="rotationTab" target="_blank">
-						<img src="static/img/ro{{.Id}}.jpg" class="ro">
+						<img src="{{.ImgPath}}" class="ro">
 					</a>
 					<div class="label">
 						<a class="bannerTitle" target="_blank" href="/jxdzN5?Id={{.Id}}&BeId=23">{{.Title}}</a>
@@ -253,6 +254,10 @@
             {{range .News2}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=28">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
             </li>
               {{end}}
           </ul>
@@ -266,6 +271,10 @@
             {{range .News3}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=29">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
             </li>
               {{end}}
           </ul>
@@ -279,6 +288,10 @@
             {{range .News4}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=30">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
             </li>
               {{end}}
           </ul>
@@ -292,6 +305,10 @@
             {{range .News5}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=31">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
             </li>
               {{end}}
           </ul>
@@ -305,6 +322,10 @@
             {{range .News6}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=32">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
             </li>
               {{end}}
           </ul>
@@ -318,6 +339,10 @@
             {{range .News7}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=33">{{.Title}}</a>
+              {{$Isnew:= .CreatTime|Isnew}}
+              {{if $Isnew}}
+              <span><img src="static/img/new.png" alt="new"></span>
+              {{end}}
             </li>
               {{end}}
           </ul>
@@ -331,6 +356,7 @@
             {{range .News8}}
             <li>
               <a href="/jxdzN5?Id={{.Id}}&BeId=34">{{.Title}}</a>
+
             </li>
               {{end}}
           </ul>
@@ -344,78 +370,33 @@
 				<div class="tabContent">
 					<div class="tabPane">
 						<ul id="roll" style="margin-top:0px;">
-							<li id="li0" style="top: 375px;">
-								<a href="file:///">
+
+
+              {{range .Newsimp}}
+              {{$top := .Id |Counttop}}
+              {{$ID := .Id |Idconvert}}
+							<li id="li{{$ID}}" style="top:{{$top}}px;">
+								<a href="/jxdzN5?Id={{.Id}}&BeId=35">
 									<div class="date">
-										<p class="year">2016.07</p>
-						    			<p class="day">11</p>
+										<p class="year">{{substr .CreatTime 0 7}}</p>
+						    			<p class="day">{{substr .CreatTime 8 10}}</p>
 									</div>
-									<p class="tabInfo">我校第二届全国大学生暑期夏令营取得圆满成功！</p>
+                  {{$IsLong := .Title |Istoolong}}
+                  {{if $IsLong}}
+									<p class="tabInfo">{{substr .Title 0 37}}...</p>
+                  {{else}}
+                  <p class="tabInfo">{{.Title}}</p>
+                {{end}}
 								</a>
 							</li>
-                		    <li id="li1" style="top: 450px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.10</p>
-								    	<p class="day">17</p>
-									</div>
-								<p class="tabInfo">关于组织收看反腐专题片《永远在路上》的通知</p>
-								</a>
-							</li>
-                		    <li id="li2" style="top: 525px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.10</p>
-						    			<p class="day">14</p>
-									</div>
-									<p class="tabInfo">西安交通大学雷亚国教授学术报告通知</p>
-								</a>
-							</li>
-            	        	<li id="li3" style="top: 0px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.10</p>
-						    			<p class="day">14</p>
-									</div>
-									<p class="tabInfo">西安交通大学雷亚国教授学术报告通知</p>
-								</a>
-							</li>
-            	            <li id="li4" style="top: 75px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.10</p>
-							    		<p class="day">11</p>
-									</div>
-									<p class="tabInfo">香港大学黄国全教授学术报告通知</p>
-								</a>
-							</li>
-							<li id="li5" style="top: 150px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.10</p>
-								    	<p class="day">10</p>
-									</div>
-									<p class="tabInfo">关于组织收看收听纪念红军长征胜利80周年纪念活动现场直播的通知</p>
-								</a>
-							</li>
-                    		<li id="li6" style="top: 225px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.10</p>
-								    	<p class="day">10</p>
-									</div>
-									<p class="tabInfo">关于组织收看收听纪念红军长征胜利80周年纪念活动现场直播的通知</p>
-								</a>
-							</li>
-        	        	    <li id="li7" style="top: 300px;">
-								<a href="file:///">
-									<div class="date">
-										<p class="year">2016.08</p>
-								    	<p class="day">23</p>
-									</div>
-									<p class="tabInfo">成电，别来无恙———欢迎校友回家</p>
-								</a>
-							</li>
+              {{end}}
+
+
+
+
+
+
+
 						</ul>
 					</div>
 				</div>

@@ -14,13 +14,14 @@ type Content struct {
 	From      string
 	CreatTime string
 	ReadTime  int
+	ImgPath   string
 }
 
-func AddContent(belong int, title string, cont string, from string, ctime string) error {
+func AddContent(belong int, title string, cont string, from string, ctime string, imgpath string) error {
 
 	o := orm.NewOrm()
 
-	content := &Content{BelongsId: belong, Title: title, Content: cont, From: from, CreatTime: ctime}
+	content := &Content{BelongsId: belong, Title: title, Content: cont, From: from, CreatTime: ctime, ImgPath: imgpath}
 
 	_, err := o.Insert(content)
 	return err
@@ -61,6 +62,25 @@ func SearchArticleById(id int) (cont Content, err error) {
 		cont = Content{Title: ""}
 	}
 	return cont, err
+}
+
+func SearchFunction(cont string) []*Content {
+	o := orm.NewOrm()
+	cond := orm.NewCondition()
+
+	Article := make([]*Content, 0)
+	cond1 := cond.Or("Title__icontains", cont).Or("Content__icontains", cont)
+	// qs, err := qs.SetCond(cond1).All(&Article)
+	qs := o.QueryTable("Content")
+
+	var err error
+	_, err = qs.SetCond(cond1).All(&Article)
+	if err != nil {
+		beego.Debug(err)
+	}
+
+	return Article
+
 }
 
 func SearchArticleByBelongid(id int) []*Content {
