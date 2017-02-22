@@ -12,13 +12,13 @@ type Employee struct {
 	Telphone            string
 	Email               string
 	Script              string `orm:"size(800)"`
-	EducationBackground string `orm:"size(5000)"`
+	EducationBackground string
 	IsDocTeacher        string `orm:"size(5)"`
 	Department          string
 	Img                 string
-	Research            string
-	Teaching            string
-	Prize               string
+	Research            string `orm:"size(5000)"`
+	Teaching            string `orm:"size(5000)"`
+	Prize               string `orm:"size(5000)"`
 }
 
 //其中workplace一栏被用作是学历

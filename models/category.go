@@ -370,6 +370,7 @@ func StandardOut() ([]string, []*Category) {
 	CateOutPut = CateSort[0:i]
 	return StanOut, CateOutPut
 }
+
 func GetAllCategoriesDepthIsOne() []*Category {
 	_, cate := StandardOut()
 
